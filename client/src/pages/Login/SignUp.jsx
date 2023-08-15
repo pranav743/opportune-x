@@ -1,0 +1,89 @@
+import React from 'react'
+import styles from "./SignUp.module.css"
+import { Input, Button, Text, InputGroup, InputRightElement, useToast } from '@chakra-ui/react'
+import { colors } from '../../Global/colors'
+import { useTheme } from "../../Global/ThemeContext"
+import showToast from "../../Global/Toast"
+
+
+
+const SignUp = () => {
+  const { theme: colors} = useTheme();
+  const [show, setShow] = React.useState(false)
+  const handleClick = () => setShow(!show)
+  const toast = useToast();
+
+  const handleSignUp = () => {
+    showToast(toast, "Success", 'success', "Signed Up")
+  }
+
+  return (
+    <div style={{ width: '100%', minHeight: 'calc(100vh - 90px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+          <div className={styles.container}>
+            <p className={styles.signUpHeading}>Sign Up</p>
+            <div className={styles.form}>
+              <div className={styles.fields}>
+                <div className={styles.field}>
+                  <Input variant={'outline'} placeholder='Name' color={colors.font} border={colors.primary} focusBorderColor={colors.primary} pl={'10px'} isRequired 
+                  _focus={{
+                     rounded:'md', bg:colors.font, color: colors.secondary
+                  }}/>
+                </div>
+                <div className={styles.field}>
+                  <Input variant={'outline'} placeholder='Email' color={colors.font} border={colors.primary} focusBorderColor={colors.primary} pl={'10px'} isRequired type='email'
+                  _focus={{
+                     rounded:'md', bg:colors.font, color: colors.secondary
+                  }}/>
+                </div>
+                <div className={styles.field}>
+                  <Input variant={'outline'} placeholder='Contact no.' color={colors.font} border={colors.primary} focusBorderColor={colors.primary} pl={'10px'} isRequired type='tel' 
+                  _focus={{
+                     rounded:'md', bg: colors.font, color: colors.secondary
+                  }}/>
+                </div>
+                <div className={styles.field}>
+                  <Text mr={'10px'} ml={'10px'} color={colors.font}>DOB: </Text>
+                  <Input variant={'outline'} placeholder='DOB' color={colors.font} border={colors.primary} focusBorderColor={colors.primary} pl={'10px'} isRequired type='datetime-local' 
+                  _focus={{
+                     rounded:'md', bg: colors.font, color: colors.secondary
+                  }}/>
+                </div>
+
+                <div className={styles.field}>
+                <InputGroup size='md'>
+                <Input variant={'outline'} color={colors.font} border={colors.primary} focusBorderColor={colors.primary} pl={'10px'} isRequired 
+                    pr='4.5rem'
+                    type={show ? 'text' : 'password'}
+                    placeholder='Enter password'
+                    _focus={{
+                      rounded:'md', bg: colors.font, color: colors.secondary
+                   }}
+                  />
+                  <InputRightElement width='4.5rem'>
+                    <Button h='1.75rem' size='sm' onClick={handleClick} bg={colors.secondary2} color={colors.font}>
+                      {show ? 'Hide' : 'Show'}
+                    </Button>
+                  </InputRightElement>
+                </InputGroup>
+                </div>
+                
+              </div>
+              <div className={styles.buttons}>
+                <Button variant={'outline'} borderColor={colors.primary} bg={colors.secondary} color={colors.font} _hover={
+                  {
+                    bg: colors.primary,
+                    color: colors.secondary
+                  }
+                }
+                onClick={handleSignUp}
+                >Sign Up</Button>
+              </div>
+              
+            </div>
+          </div>
+        
+    </div>
+  )
+}
+
+export default SignUp;
