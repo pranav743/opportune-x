@@ -105,7 +105,7 @@ const Navbar = () => {
           <p>Opportune X</p>
         </div>
 
-        { isLoggedIn && 
+        { !isLoggedIn && 
         
         <div className={styles.loginContainer} >
 

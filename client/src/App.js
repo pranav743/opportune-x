@@ -59,8 +59,7 @@ function App() {
             width: 'auto',
             minHeight: smallNav ? 'calc(100vh - 90px)' : 'calc(100vh - 60px)',
             maxHeight: smallNav ? 'calc(100vh - 90px)' : 'calc(100vh - 60px)',
-            overflowY: 'auto',
-            backgroundColor: '#ff0',
+            overflowY: 'hidden',
           }}
         >
          

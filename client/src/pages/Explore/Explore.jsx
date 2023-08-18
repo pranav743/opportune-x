@@ -2,11 +2,24 @@ import React, { useEffect, useState } from 'react'
 import Loader from '../../components/loader/Loader';
 import { colors } from '../../Global/colors';
 import { useTheme } from '../../Global/ThemeContext';
+import axios from 'axios'
 
 
 const ExplorePage = () => {
   const { theme: colors } = useTheme();
     const [isLoading, setLoading] = useState(false);
+
+    const getinfo = async () => {
+        try {
+          var res = await axios.get("http://localhost:8000")
+          console.log(res.data)
+        } catch (error) {
+          console.log(error)
+        }
+    }
+    useEffect(()=> {
+        getinfo();
+    }, [])
 
 
     return (
