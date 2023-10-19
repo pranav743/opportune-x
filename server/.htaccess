@@ -1,8 +1,2 @@
 RewriteEngine On
-
-# Handle requests for non-existing files or directories
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-
-# Redirect all requests to the index.php file
-RewriteRule ^(.*)$ public/index.php [L]
+RewriteRule . index.php
