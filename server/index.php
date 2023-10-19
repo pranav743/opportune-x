@@ -1,4 +1,23 @@
 <?php
+// Allow requests from any origin (not recommended for production)
+header("Access-Control-Allow-Origin: *");
+
+// Allow specified HTTP methods
+header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+
+// Allow specified HTTP headers
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
+// Set the maximum age for preflight requests (in seconds)
+header("Access-Control-Max-Age: 3600"); // Cache preflight requests for 1 hour
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+    header("Access-Control-Allow-Headers: Content-Type, Authorization");
+    http_response_code(200);
+    exit();
+}
+
 require 'vendor/autoload.php'; // Autoload FastRoute and other dependencies
 require 'controllers/UserController.php';
 require 'routes/user.php';
