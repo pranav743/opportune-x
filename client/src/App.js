@@ -12,6 +12,7 @@ import Wrapper from './components/Wrapper/Wrapper';
 import HomePage from './pages/Home/Home';
 import ExplorePage from './pages/Explore/Explore';
 import SignUp from './pages/Login/SignUp';
+import Internships from './pages/Internship/Browse/Internships';
 
 //importing Functions 
 import { setAuthToken, isAuthenticated, getUserDetails } from './Global/authUtils';
@@ -69,6 +70,7 @@ function App() {
             <Route path="/" element={<HomePage />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/internships/browse" element={<Internships />} />
           </Routes>
           </Wrapper>
         </div>
