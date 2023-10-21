@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import styles from "./SignUp.module.css"
+import styles from "./Settings.module.css"
 import { Input, Button, Text, InputGroup, InputRightElement, useToast } from '@chakra-ui/react'
 import { colors } from '../../Global/colors'
 import { useTheme } from "../../Global/ThemeContext"
@@ -7,10 +7,15 @@ import showToast from "../../Global/Toast"
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { url } from '../../Global/URL'
+import { useCallback } from 'react'
+import { useDropzone } from 'react-dropzone'
+import { progress } from 'framer-motion'
+import {Cloudinary} from "@cloudinary/url-gen";
 
 
 
-const SignUp = () => {
+const Settings = () => {
+
   const { theme: colors} = useTheme();
   const [show, setShow] = React.useState(false)
   const handleClick = () => setShow(!show)
@@ -22,45 +27,76 @@ const SignUp = () => {
   const [dob, setDob] = useState('');
   const [password, setPassword] = useState('');
 
-  // const {isError, isLoading, data} = useQuery({
-  //   queryKey: ['/route1'],
-  //   queryFn: ()=> {
-  //     let temp = axios.post(url + '/register', {email, password}).then(response=>response.data);
-  //     if (temp.success){
-  //       showToast(toast, "Success", 'success', temp.message);
-  //     }
-  //     else{
-  //       showToast(toast, "Error", 'error', temp.message);
-  //     }
-  //     return temp;
-  //   }
-  // })
+  //files
+  
+  const [file,setFile]=useState(null);
 
-  const handleSignUp = async () => {
-    // showToast(toast, "Success", 'success', "Signed Up");
-    console.log(name, email, contactNo, dob, password);
-    try {
-      let temp = await axios.post(url + '/register', {email, password, name, contact_no: contactNo, dob}).then(response=>response.data);
-      console.log(temp);
-        if (temp.success){
-          showToast(toast, "Success", 'success', temp.message);
-          window.location = '/'
+  const {
+    acceptedFiles,
+    fileRejections,
+    getRootProps,
+    getInputProps,
+    isDragActive,
+    isDragAccept,
+    isDragReject
+  } = useDropzone({
+    accept: ['application/pdf']
+  });
+
+  const acceptedFileItems = acceptedFiles.map(file => {
+    return (
+      <li className='text-blue-400' key={file.path}>
+        {file.path} - {file.size} bytes
+      </li>
+    );
+  });
+
+
+  const submit = async ()=>{
+
+    const formData= new FormData();
+    formData.append('file',file);
+
+    const cloudinaryURL = "https://api.cloudinary.com/v1_1/dutetj1yh/auto/upload?upload_preset=pfab3xyd";
+
+        try {
+            setFile(acceptedFiles[0]);
+            console.log(file)
+            const response = await fetch(cloudinaryURL, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (response.ok) {
+            const result = await response.json();
+            const imageUrl = result.secure_url;
+            console.log('Image URL:', imageUrl);
+        } else {
+            console.error('Upload failed:', response.status);
         }
-        else{
-          showToast(toast, "Error", 'error', temp.message);
+        } catch (error) {
+          console.error('Upload failed:', error);
         }
-        return temp;
-    } catch (error) {
-      console.log(error.response.data.message)
-      showToast(toast, "Error", 'error', error.response.data.message);
-    }
   }
+
+  const handleSubmit = async () => {
+
+    setFile(acceptedFiles[0]);
+    console.log(file)
+
+    if(!file){
+       console.log("NO FILE SELECTED");
+       return;
+    }else{
+        submit();
+    }
+}
 
   return (
     <>
     <div style={{ width: '100%', minHeight: 'calc(100vh - 90px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
           <div className={styles.container}>
-            <p className={styles.signUpHeading}>Sign Up</p>
+            <p className={styles.signUpHeading}>Edit Profile</p>
             <div className={styles.form}>
               <div className={styles.fields}>
                 <div className={styles.field}>
@@ -116,8 +152,28 @@ const SignUp = () => {
                   </InputRightElement>
                 </InputGroup>
                 </div>
+
+                {/* Resume Upload */}
+
+                <div className={styles.field}>
+                    <section className="container">
+                      <div {...getRootProps({ className: 'dropzone' })}>
+                          <input {...getInputProps()} />
+                          {isDragAccept && (<p>Drop to Add File</p>)}
+                          {isDragReject && (<div><p className='text-red-500'>Only .pdf file accepted</p></div>)}
+                          {!isDragActive && (<p className='text-white'>Drop some files here ...</p>)}
+                    </div>
+                    <aside>
+                         <ul>{acceptedFileItems}</ul>
+
+                    </aside>
+                    </section>
+
+                </div>
+
                 
               </div>
+
               <div className={styles.buttons}>
                 <Button variant={'outline'} borderColor={colors.primary} bg={colors.secondary} color={colors.font} _hover={
                   {
@@ -125,8 +181,9 @@ const SignUp = () => {
                     color: colors.secondary
                   }
                 }
-                onClick={handleSignUp}
-                >Sign Up</Button>
+
+                onClick={handleSubmit}
+                >SAVE</Button>
               </div>
               
             </div>
@@ -138,4 +195,4 @@ const SignUp = () => {
   )
 }
 
-export default SignUp;
+export default Settings;

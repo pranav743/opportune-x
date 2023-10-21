@@ -1,1 +1,1 @@
-export default url = "http://localhost:5000/"
+export const url = "http://192.168.0.106:8000"

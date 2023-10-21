@@ -4,13 +4,39 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import axios from'axios';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+const BASE_URL = "http://192.168.0.106:8000"
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      queryFn: ({queryKey, type='get'}) => {
+        if (type === 'get'){
+          return axios.get(`${BASE_URL}${queryKey}`).then(response => response.data);
+        }
+      }
+        
+    }
+  }
+})
+
 root.render(
   <React.StrictMode>
+    <QueryClientProvider client={queryClient}>
     <ChakraProvider>
     <App />
     </ChakraProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

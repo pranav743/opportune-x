@@ -1,8 +1,13 @@
 import axios from 'axios'
+import {url} from './URL';
     // Function to set the authentication token in localStorage
     export const setAuthToken = (token) => {
     localStorage.setItem('authToken', token);
     };
+
+    export const logout = () => {
+        localStorage.removeItem('authToken');
+    }
 
     // Function to get the authentication token from localStorage
     export const getAuthToken = () => {
@@ -12,8 +17,8 @@ import axios from 'axios'
     // Function to check if the user is logged in
     export const isAuthenticated = () => {
     const token = getAuthToken();
-    // return token !== null; 
-    return true
+    return token !== null; 
+    // return true
     };
 
 
@@ -25,12 +30,14 @@ import axios from 'axios'
     }
 
     try {
-        const response = await axios.get('YOUR_API_ENDPOINT_HERE', {
-        headers: {
-            Authorization: `Bearer ${token}`,
-            'Content-Type': 'application/json',
-        },
-        });
+        const response = await axios.post(url + '/authorization', {authorization: token}
+        // {
+        // headers: {
+        //     Authorization: `Bearer ${token}`,
+        //     'Content-Type': 'application/json',
+        // },
+        // }
+        );
 
         if (response.status === 200) {
         const userDetails = response.data;
@@ -39,7 +46,7 @@ import axios from 'axios'
         return false;
         }
     } catch (error) {
-        console.error('Error fetching user details:', error);
+        console.error('Error fetching user details:', error.message);
         return false;
     }
     };

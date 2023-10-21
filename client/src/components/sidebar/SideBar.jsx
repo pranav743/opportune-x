@@ -4,6 +4,7 @@ import styles from "./SideBar.module.css";
 import {Link} from 'react-router-dom';
 // import { colors } from '../../Global/colors';
 import { useTheme } from '../../Global/ThemeContext';
+import { logout } from '../../Global/authUtils';
 
 const SideBar = () => {
     const [isMinimized, setMinimized] = useState(false);
@@ -71,7 +72,12 @@ const SideBar = () => {
                     <span className={styles.iconContainer} ><FaSun/></span>
                     Change Theme
                 </div>
-                <div className={styles.listItem}>
+                <div className={styles.listItem} onClick={
+                    ()=>{
+                        logout();
+                        window.location = '/';
+                    }
+                }>
                     <span className={styles.iconContainer}><FaSignOutAlt/></span>
                     Logout
                 </div>

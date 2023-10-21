@@ -31,7 +31,7 @@ const Navbar = () => {
   const options = [
     {
       name: "Internships",
-      link: false
+      link: '/internships/browse'
     },
     {
       name: "Contact us",
@@ -105,7 +105,7 @@ const Navbar = () => {
           <p>Opportune X</p>
         </div>
 
-        { isLoggedIn && 
+        { !isLoggedIn && 
         
         <div className={styles.loginContainer} >
 
