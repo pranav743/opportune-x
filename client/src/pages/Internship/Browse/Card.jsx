@@ -8,7 +8,7 @@ const Card = (props) => {
 
     const viewDetails = () => {
 
-        window.locaion = `internships/browse/${_id}`;
+        window.location = `internships/browse/${_id}`;
 
     }
 
