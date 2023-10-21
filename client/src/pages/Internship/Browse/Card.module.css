@@ -1,0 +1,25 @@
+@keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+
+.applyBtn{
+  height: 40px;
+  width: 140px;
+  background-color: #0fcc08;
+  color: var(--font-color);
+  font-weight: bold;
+  border-radius: 15px;
+  transition: all 0.5s;
+}
+
+.applyBtn:hover{
+  background-color: transparent;
+  letter-spacing: 2px;
+  width: 100%;
+}
+  

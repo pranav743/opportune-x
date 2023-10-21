@@ -33,10 +33,10 @@ const Wrapper = ({ children }) => {
         gsap.from(
           element,
           {
-            x: 100,
+            x: 0,
           
-            y: 1,
-            duration: 1.5,
+            y: -20,
+            duration: 1,
             opacity: 0,
             scrollTrigger: {
               trigger: element,
