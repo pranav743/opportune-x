@@ -40,10 +40,11 @@ const SignUp = () => {
     // showToast(toast, "Success", 'success', "Signed Up");
     console.log(name, email, contactNo, dob, password);
     try {
-      let temp = await axios.post(url + '/register', {email: email, password: password}).then(response=>response.data);
+      let temp = await axios.post(url + '/register', {email, password, name, contact_no: contactNo, dob}).then(response=>response.data);
       console.log(temp);
         if (temp.success){
           showToast(toast, "Success", 'success', temp.message);
+          window.location = '/'
         }
         else{
           showToast(toast, "Error", 'error', temp.message);

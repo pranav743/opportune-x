@@ -56,10 +56,13 @@ class UserController {
                 echo json_encode(["success" => false, 'message' => 'User with this email already exists']);
             } else {
                 // Prepare the user document
-                $userDocument = [
-                    'email' => $email,
-                    'password' => $password,
-                ];
+                $data['password']=$password;
+                $data['isActive']= true;
+                $userDocument = $data;
+                // $userDocument = [
+                //     'email' => $email,
+                //     'password' => $password,
+                // ];
     
                 // Insert the user document into the "users" collection
                 $result = $collection->insertOne($userDocument);
@@ -193,15 +196,6 @@ class UserController {
             echo json_encode(['success' => false, 'message' => 'Something Went Wrong']);
         }
     }
-    
-    
-
-
-    
-    
-    
-    
-    
     
 
     public function route2() {

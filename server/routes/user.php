@@ -9,4 +9,8 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('POST', '/authorization', ['UserController','authorization']);
 
 
+    $r->addRoute('GET', '/internship', ['InternshipController','route1']);
+
+
+
 });
