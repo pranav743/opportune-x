@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import Loader from '../../components/loader/Loader';
 import { useTheme } from '../../Global/ThemeContext';
 import styles from './Home.module.css';
-import { gsap } from 'gsap';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
 
@@ -158,7 +157,7 @@ const HomePage = () => {
             </Swiper>
                 
             </div>
-            
+
            
         </div>
     );

@@ -31,7 +31,7 @@ const Navbar = () => {
   const options = [
     {
       name: "Internships",
-      link: false
+      link: '/internships/browse'
     },
     {
       name: "Contact us",
