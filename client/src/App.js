@@ -15,6 +15,7 @@ import SignUp from './pages/Login/SignUp';
 import Internships from './pages/Internship/Browse/Internships';
 import Internshipdetails from './pages/Internshipdetails/Internshipdetails';
 import Myinternship from './pages/MyInternship/Myinternship';
+import Courses from './pages/Courses/Browse/Courses';
 
 //importing Functions 
 import { setAuthToken, isAuthenticated, getUserDetails } from './Global/authUtils';
@@ -80,6 +81,8 @@ function App() {
             <Route path="/internships/browse" element={<Internships />} />
             <Route path='/internshipdetails' element={<Internshipdetails/>}/>
             <Route path='/Myinternships' element={<Myinternship/>}/>
+            <Route path="/courses/browse/all" element={<Courses />} />
+
           </Routes>
           </Wrapper>
         </div>
