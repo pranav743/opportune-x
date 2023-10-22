@@ -1,0 +1,18 @@
+.container{
+    margin: 0;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchResult{
+    width: 100%;
+    padding-left: 10px;
+    color: var(--secondary-color);
+    cursor: pointer;
+}
+
+.searchResult:hover{
+    background-color: var(--secondary-color);
+    color: var(--font-color);
+}

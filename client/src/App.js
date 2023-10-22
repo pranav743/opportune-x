@@ -13,6 +13,7 @@ import HomePage from './pages/Home/Home';
 import ExplorePage from './pages/Explore/Explore';
 import SignUp from './pages/Login/SignUp';
 import Internships from './pages/Internship/Browse/Internships';
+import Courses from './pages/Courses/Browse/Courses';
 
 //importing Functions 
 import { setAuthToken, isAuthenticated, getUserDetails } from './Global/authUtils';
@@ -71,6 +72,8 @@ function App() {
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/internships/browse" element={<Internships />} />
+            <Route path="/courses/browse/all" element={<Courses />} />
+
           </Routes>
           </Wrapper>
         </div>

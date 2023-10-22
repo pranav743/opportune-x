@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 require 'vendor/autoload.php'; // Autoload FastRoute and other dependencies
 require 'controllers/UserController.php';
 require 'controllers/InternshipController.php';
+require 'controllers/CourseController.php';
 require 'routes/user.php';
 require './database/db.php';
 
@@ -50,6 +51,7 @@ switch ($routeInfo[0]) {
         $controllerName = $handler[0];
         $method = $handler[1];
         $controller = new $controllerName();
-        $controller->$method();
+        // $controller->$method();
+        $controller->$method($request=null, $response=null, $vars);
         break;
 }
