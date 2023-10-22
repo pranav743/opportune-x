@@ -85,5 +85,27 @@ class CourseController {
             echo json_encode(["success" => false, 'message' => 'An error occurred while searching for courses.']);
         }
     }
+
+    public function getCourseById($request, $response, $args) {
+        $courseId = $args['id']; // Assuming 'id' is the route parameter for the MongoDB ID
+        $db = getDatabase();
+        $collection = $db->courses;
+    
+        try {
+            $course = $collection->findOne(['_id' => new MongoDB\BSON\ObjectId($courseId)]);
+    
+            if ($course) {
+                http_response_code(200); // OK
+                echo json_encode(["success" => true, 'message' => $course]);
+            } else {
+                http_response_code(404); // Not Found
+                echo json_encode(["success" => false, 'message' => 'Course not found.']);
+            }
+        } catch (Exception $e) {
+            http_response_code(500); // Internal Server Error
+            echo json_encode(["success" => false, 'message' => 'An error occurred while fetching the course.']);
+        }
+    }
+    
  
 }
