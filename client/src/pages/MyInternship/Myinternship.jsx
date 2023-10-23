@@ -6,6 +6,7 @@ import showToast from "../../Global/Toast";
 import { url } from '../../Global/URL';  
 import img1 from './image1.png';
 import './Myinternship.css'
+import { getUserDetails } from '../../Global/authUtils';
 
 const Internshipdetails = () => {
     
@@ -13,6 +14,7 @@ const Internshipdetails = () => {
     const toast = useToast();
 
     const [selectedTab, setSelectedTab] = useState(0);
+    const [user, setUser] = useState(false);
 
     const [data,setData]=useState([
         {
@@ -51,10 +53,20 @@ const Internshipdetails = () => {
         const fetchData = async () => {
         //   const data = await fetchDataForTab(selectedTab);
         //   setData(data);
-        console.log(selectedTab);
         };
         fetchData();
       }, [selectedTab]);
+
+      useEffect(() => {
+        const fetchData = async () => {
+            const details = await getUserDetails();
+            setUser(details);
+            console.log(details);
+        };
+    
+        fetchData();
+    }, []);
+    
 
 
   return (

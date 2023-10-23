@@ -46,7 +46,7 @@ const SideBar = () => {
         {
             icon: <FaThLarge/>,
             name: "Application",
-            link: "/application"
+            link: "/my-internships"
         },
        
         

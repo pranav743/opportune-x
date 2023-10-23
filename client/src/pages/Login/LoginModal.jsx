@@ -61,7 +61,8 @@ function LoginModal() {
           data = data.data;
           setAuthToken(data.token);
           showToast(toast, "Success", 'success', "Logged In !");
-          window.location = "/";
+          window.location.reload();
+
         }
       } catch (error) {
 

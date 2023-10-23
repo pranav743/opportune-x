@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 import { useTheme } from '../../Global/ThemeContext';
 import axios from 'axios';
@@ -22,6 +22,7 @@ import { BsFillBuildingsFill } from 'react-icons/bs'
 import { useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../components/loader/Loader';
+import { isAuthenticated, getUserDetails } from '../../Global/authUtils';
 
 
 
@@ -29,13 +30,51 @@ import Loader from '../../components/loader/Loader';
 const Internshipdetails = () => {
 
     const { id } = useParams();
+    const [userDetails, setUserDetails] = useState();
 
     const { isError, isLoading, data } = useQuery({
         queryKey: [`/internship/${id}`],
-    })
+    });
+
+    const buttonRef = useRef(null);
 
     const { theme: colors } = useTheme();
     const toast = useToast();
+
+    const applyToInternship = async () => {
+        buttonRef.current.disabled = true;
+        try {
+            if (isAuthenticated()){
+                var userDetails;
+                try {
+                    userDetails = await getUserDetails();
+                    setUserDetails(userDetails);
+                } catch (error) {
+                    showToast(toast, "Error", 'error', "User not Authenticated");
+                }
+                let data = await axios.post(url+'/apply/internship', {user_id: userDetails._id.$oid, internship_id: id});
+                if (data.data.success){
+                    showToast(toast, "Success", 'success', data.data.message);
+                    buttonRef.current.disabled = false;
+                    return;
+                } else {
+                    showToast(toast, "Error", 'error', data.data.message);
+                    buttonRef.current.disabled = false;
+                    return;
+                }
+                
+            }
+            else{
+                showToast(toast, "Error", 'error', "You Should Login to Apply !");
+                buttonRef.current.disabled = false;
+                return;
+            }
+        } catch (error) {
+            console.log(error)
+            showToast(toast, "Error", 'error', JSON.stringify(error.response));
+            buttonRef.current.disabled = false;
+        }
+    }
 
     if (isLoading) {
         return (
@@ -53,15 +92,16 @@ const Internshipdetails = () => {
         );
     }
     return (
-        <div className='mx-auto sm:w-[80%] w-[100%]' style={{ height: 'auto', padding: '15px', backgroundColor: colors.secondary, boxShadow: `2.5px 5px 7.5px ${colors.hover}`, marginTop: '15px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap', minWidth: '95%' }}>
-            <div className=''>
-                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29tcGFueXxlbnwwfHwwfHx8MA%3D%3D" class="img-fluid rounded-top " alt="Not found" style={{ borderRadius: '20px', transform: 'translateX(15px)' }} />
+        <div className='mx-auto sm:w-[90%] w-[100%]' style={{ height: 'auto', padding: '15px', backgroundColor: colors.secondary, boxShadow: `2.5px 5px 7.5px ${colors.hover}`, marginTop: '15px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap', minWidth: '95%' }}>
+            <div style={{width: '100%', position: 'relative'}}>
+                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29tcGFueXxlbnwwfHwwfHx8MA%3D%3D" class="img-fluid rounded-top " alt="Not found" style={{ borderRadius: '20px', transform: 'translateX(15px)', width: '97%', maxHeight: '90vh' }} />
+                <div style={{position: 'absolute', top: '0', left: '0', background: `linear-gradient(180deg, rgba(0,0,0,0), ${colors.secondary})` ,height: '100%', width: '100%'}}></div>
             </div>
 
             <div className='flex flex-col sm:flex-row w-full mx-auto mt-6 p-1 justify-between flex-wrap'>
                 <div className='h-fit w-[100%] sm:w-[74%] rounded-lg p-1 ' style={{ backgroundColor: colors.secondary2, color: colors.font }}>
                     <div className='w-full px-3 py-2 flex-col'>
-                        <p className='text-3xl' style={{ color: colors.font }}>{data.message && JSON.stringify(data.message.title)}</p>
+                        <p className='text-3xl' style={{ color: colors.font, fontWeight: 'bold', fontFamily: 'Titillium Web' }}>{data.message && JSON.stringify(data.message.title)}</p>
                         <div className='flex mt-3 items-center ml-5'><Icon as={BsFillBuildingsFill} w={5} h={5} color='blue.500' /><p className='text-lg ml-2'>{data.message.companyName}</p></div>
                         <div className='flex  items-center ml-5'><LinkIcon w={5} h={4} color="blue.500" /><p className='text-lg ml-2'>{`www.${data.message.companyName}.com`}</p></div>
                     </div>
@@ -158,7 +198,7 @@ const Internshipdetails = () => {
 
                 <div className='w-[100%] sm:w-[25%] h-fit p-1 mt-5 sm:mt-0' style={{ backgroundColor: colors.secondary }}>
                     <div className='h-fit  rounded-lg '>
-                        <button className='p-2 rounded-lg w-full text-xl font-bold bg-blue-500 hover:bg-green-500 text-white' >APPLY</button>
+                        <button className='p-2 rounded-lg w-full text-xl font-bold bg-blue-500 hover:bg-green-500 text-white' onClick={applyToInternship} ref={buttonRef}>APPLY</button>
                     </div>
 
                     <div className='h-fit p-1 mt-2 rounded-lg w-full mx-auto py-2' style={{ backgroundColor: colors.secondary2, color: colors.font, height: 'auto', display: 'flex', flexDirection: 'column' }}>

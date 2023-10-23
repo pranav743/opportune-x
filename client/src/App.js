@@ -86,6 +86,8 @@ function App() {
             <Route path="/courses/browse/all" element={<Courses />} />
             <Route path='/Mycourses' element={<Mycourses/>}/>
             <Route path='/coursedetails' element={<Coursedetails/>}/>
+            <Route path='/my-internships' element={<Myinternship/>}/>
+
           </Routes>
           </Wrapper>
         </div>
