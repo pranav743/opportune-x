@@ -41,7 +41,7 @@ import {url} from './URL';
 
         if (response.status === 200) {
         const userDetails = response.data;
-        return userDetails;
+        return userDetails.message;
         } else {
         return false;
         }

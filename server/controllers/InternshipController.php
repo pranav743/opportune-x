@@ -84,7 +84,7 @@ class InternshipController
                 } catch (Exception $e) {
                     http_response_code(404);
                     echo json_encode(["success" => false, 'message' => 'Invalid Internship or User', 'error'=> $e]);
-                    return;
+                    exit;
                 }
             
 
@@ -102,7 +102,7 @@ class InternshipController
                     } else {
                         http_response_code(200);
                         echo json_encode(["success" => true, 'message' => 'Already Applied !']);
-                        return;
+                        exit;
                     }
 
                     if (!isset($existingUser['myInternshipApplications'])) {
@@ -124,18 +124,18 @@ class InternshipController
 
                     http_response_code(200);
                     echo json_encode(["success" => true, 'message' => 'Student added to appliedStudents']);
-                    return;
+                    exit;
                 } else {
                     http_response_code(404);
                     echo json_encode(["success" => false, 'message' => 'Invalid user or Internship']);
-                    return;
+                    exit;
                 }
 
 
             } else {
                 http_response_code(400);
                 echo json_encode(["success" => false, 'message' => 'Invalid Data Provided']);
-                return;
+                exit;
             }
         } catch (Exception $e) {
             http_response_code(500);
