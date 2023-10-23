@@ -81,8 +81,8 @@ function App() {
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/internships/browse" element={<Internships />} />
-            <Route path='/internshipdetails' element={<Internshipdetails/>}/>
-            <Route path='/Myinternships' element={<Myinternship/>}/>
+            <Route path='/internships/view/:id' element={<Internshipdetails/>}/>
+            {/* <Route path='/internship/view/:id' element={<Myinternship/>}/> */}
             <Route path="/courses/browse/all" element={<Courses />} />
             <Route path='/Mycourses' element={<Mycourses/>}/>
             <Route path='/coursedetails' element={<Coursedetails/>}/>

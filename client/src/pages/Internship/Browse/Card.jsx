@@ -1,17 +1,12 @@
 import React from 'react';
 import { useTheme } from '../../../Global/ThemeContext';
 import styles from "./Card.module.css";
+import { useNavigate } from 'react-router-dom';
 
 const Card = (props) => {
     var {title, description, _id} = props;
     const { theme: colors} = useTheme();
-
-    const viewDetails = () => {
-
-        window.location = `internships/browse/${_id}`;
-
-    }
-
+    const navigate = useNavigate();
 
   return (
 
@@ -32,7 +27,7 @@ const Card = (props) => {
         </div>
 
         <div style={{display: 'flex', justifyContent: 'flex-end', width: '100%', marginTop: '15px'}}>
-            <button className={styles.applyBtn}> View Details</button>
+            <button className={styles.applyBtn} onClick={()=> navigate(`/internships/view/${_id.$oid}`)}> View Details</button>
         </div>
 
       

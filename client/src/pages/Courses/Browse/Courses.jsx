@@ -19,15 +19,15 @@ const Courses = () => {
     const searchRef = useRef();
 
 
-    
+
     const { isError, isLoading, data } = useQuery({
         queryKey: ['/courses/all'],
         retry: false
     })
 
-    const getSearchResults = async (val) =>{
+    const getSearchResults = async (val) => {
         try {
-            const data = await axios.get(url + '/courses/search/'+ val);
+            const data = await axios.get(url + '/courses/search/' + val);
             let results = data.data.message;
             setSearchResults(results);
         } catch (error) {
@@ -35,25 +35,26 @@ const Courses = () => {
         }
     }
 
-    useEffect(()=>{
-        if (search === ''){
+    useEffect(() => {
+        if (search === '') {
             setSearchResults([]);
         }
+        
     })
 
     if (isError) {
         return (
-          <div style={{width: '100%', height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <h1 style={{ color: colors.font, fontSize: '22px', fontWeight: 'bold', letterSpacing: '1px' }}>Something went Wrong :(</h1>
-          </div>
+            <div style={{ width: '100%', height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <h1 style={{ color: colors.font, fontSize: '22px', fontWeight: 'bold', letterSpacing: '1px' }}>Something went Wrong :(</h1>
+            </div>
         );
-      } else if (isLoading) {
+    } else if (isLoading) {
         return (
-          <div style={{ height: '80vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
-            <Loader/>
-          </div>
+            <div style={{ height: '80vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                <Loader />
+            </div>
         );
-      }
+    }
     else {
         return (
 
@@ -71,19 +72,23 @@ const Courses = () => {
                             rounded: 'md', bg: colors.font, color: colors.secondary
                         }}
                         sx={{ border: `solid 1px ${colors.font}` }} ref={searchRef}
-                        value={search} onInput={(e)=> {getSearchResults(e.target.value); return setSearch(e.target.value);}}
+                        value={search} onInput={(e) => { getSearchResults(e.target.value); return setSearch(e.target.value); }}
                     />
 
-                    <span style={{display: 'flex', backgroundColor: colors.font, width: '250px', height: 'auto', flexDirection: 'column', position: 'absolute', top: '42px', zIndex: 1, borderRadius: '5px', maxHeight: '300px', overflowY: 'auto'}}>
-                        {
-                            searchResults && searchResults.map((result, index)=>(
-                                <div style={{height: '40px', width: '250px', display: 'flex', alignItems: 'center'}}>
+                    <span style={{ display: 'flex', backgroundColor: colors.font, width: '250px', height: 'auto', flexDirection: 'column', position: 'absolute', top: '42px', zIndex: 1, borderRadius: '5px', maxHeight: '300px', overflowY: 'auto' }}>
+
+
+                        <span style={{ display: 'flex', backgroundColor: colors.font, width: '250px', height: 'auto', flexDirection: 'column', position: 'absolute', top: '42px', zIndex: 1, borderRadius: '5px', maxHeight: '300px', overflowY: 'auto' }}>
+                            {searchResults && searchResults.map((result, index) => (
+                                <div style={{ height: '40px', width: '250px', display: 'flex', alignItems: 'center' }}>
                                     <p className={styles.searchResult} key={index}>
-                                {result.length > 28 ? result.substring(0, 28) + '...' : result}
-                                </p>
+                                        {result.length > 28 ? result.substring(0, 28) + '...' : result}
+                                    </p>
                                 </div>
-                            ))
-                        }
+                            ))}
+                        </span>
+
+
                     </span>
 
                 </div>
