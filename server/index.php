@@ -23,7 +23,7 @@ require 'controllers/UserController.php';
 require 'controllers/InternshipController.php';
 require 'controllers/CourseController.php';
 require 'routes/user.php';
-require './database/db.php';
+require 'database/db.php';
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
