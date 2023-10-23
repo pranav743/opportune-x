@@ -36,19 +36,18 @@ class UserController {
     }
 
     public function register() {
-        // Retrieve user registration data from the request
+
         $data = json_decode(file_get_contents('php://input'), true);
     
-        // Basic validation (you should perform more extensive validation)
+
         if (isset($data['email']) && isset($data['password'])) {
-            // Sanitize and validate user input
+            // Sanitizing and validate user input
             $email = htmlspecialchars($data['email']);
             $password = password_hash($data['password'], PASSWORD_BCRYPT);
     
             $db = getDatabase();
             $collection = $db->users;
     
-            // Check if the user already exists
             $existingUser = $collection->findOne(['email' => $email]);
     
             if ($existingUser) {
@@ -76,8 +75,8 @@ class UserController {
                 }
             }
         } else {
-            http_response_code(400); // Bad Request
-            echo json_encode(["success" => false, 'message' => 'Invalid data']);
+            http_response_code(400); 
+            echo json_encode(["success" => false, 'message' => 'Invalid Data Provided']);
         }
     }
 

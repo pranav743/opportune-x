@@ -13,11 +13,18 @@ import HomePage from './pages/Home/Home';
 import ExplorePage from './pages/Explore/Explore';
 import SignUp from './pages/Login/SignUp';
 import Internships from './pages/Internship/Browse/Internships';
+import Internshipdetails from './pages/Internshipdetails/Internshipdetails';
+import Myinternship from './pages/MyInternship/Myinternship';
+import Courses from './pages/Courses/Browse/Courses';
 
 //importing Functions 
 import { setAuthToken, isAuthenticated, getUserDetails } from './Global/authUtils';
 import { colors } from './Global/colors';
 import { ThemeProvider, useTheme } from './Global/ThemeContext';
+
+
+
+
 
 function App() {
   const [showSidebar, setShowSidebar] = useState(window.innerWidth > 700); 
@@ -39,14 +46,15 @@ function App() {
     };
   }, []);
 
+
   // useEffect(() => {
-  //   const root = document.documentElement;
-  //   root.style.setProperty('--primary-color', colors.primary);
-  //   root.style.setProperty('--secondary-color', colors.secondary);
-  //   root.style.setProperty('--secondary2-color', colors.secondary2);
-  //   root.style.setProperty('--font-color', colors.font);
-  //   root.style.setProperty('--hover-color', colors.hover); 
-  // }, []);
+//   const root = document.documentElement;
+//   root.style.setProperty('--primary-color', colors.primary);
+//   root.style.setProperty('--secondary-color', colors.secondary);
+//   root.style.setProperty('--secondary2-color', colors.secondary2);
+//  root.style.setProperty('--font-color', colors.font);
+//   root.style.setProperty('--hover-color', colors.hover); 
+// }, []);
 
 
   return (
@@ -71,6 +79,10 @@ function App() {
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/signup" element={<SignUp />} />
             <Route path="/internships/browse" element={<Internships />} />
+            <Route path='/internshipdetails' element={<Internshipdetails/>}/>
+            <Route path='/Myinternships' element={<Myinternship/>}/>
+            <Route path="/courses/browse/all" element={<Courses />} />
+
           </Routes>
           </Wrapper>
         </div>

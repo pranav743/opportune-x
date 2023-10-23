@@ -34,11 +34,11 @@ const Navbar = () => {
       link: '/internships/browse'
     },
     {
-      name: "Contact us",
-      link: false
+      name: "Courses",
+      link: "/courses/browse/all"
     },
     {
-      name: "Subscribe",
+      name: "Contact Us",
       link: false
     }
   ]
