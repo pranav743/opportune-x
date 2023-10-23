@@ -1,9 +1,10 @@
 import React from 'react';
 import { useTheme } from '../../../Global/ThemeContext';
 import styles from "./Card.module.css";
+import { Link } from 'react-router-dom';
 
 const Card = (props) => {
-    var {courseTitle, category, description, rating, image, fee, durationInWeeks, subject} = props;
+    var {courseTitle, category, description, rating, image, fee, durationInWeeks, subject, _id} = props;
     const { theme: colors} = useTheme();
 
     const viewDetails = () => {
@@ -16,7 +17,7 @@ const Card = (props) => {
 
   return (
 
-
+    <Link to={`/courses/view/${_id}`}>
     <div className='appear' style={{width: '350px', height: 'auto', padding: '15px', backgroundColor: colors.secondary, boxShadow: `2.5px 5px 7.5px ${colors.hover}` , margin: '15px', borderRadius: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer'}}>
 
        <div style={{height: '150px', width: '100%', borderRadius: '15px', overflow: 'hidden'}}>
@@ -30,9 +31,8 @@ const Card = (props) => {
 
         <p style={{color: colors.accent, width: '40%', textAlign: 'right', fontStyle: 'italic', fontWeight: 'bold'}}>{durationInWeeks} Weeks</p>
        </div>
-
-      
     </div>
+    </Link>
   )
 }
 

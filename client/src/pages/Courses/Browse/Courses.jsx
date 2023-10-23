@@ -98,7 +98,7 @@ const Courses = () => {
 
                     {
                         data && data.map((course, index) => (
-                            <Card courseTitle={course.courseTitle} category={course.category} description={course.description} rating={course.rating} image={course.image} fee={course.fee} durationInWeeks={course.durationInWeeks} subject={course.subject} />
+                            <Card courseTitle={course.courseTitle} category={course.category} description={course.description} rating={course.rating} image={course.image} fee={course.fee} durationInWeeks={course.durationInWeeks} subject={course.subject} _id={course._id.$oid} />
                         ))
                     }
 
