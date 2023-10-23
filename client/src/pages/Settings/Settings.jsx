@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState,useMemo} from 'react'
 import styles from "./Settings.module.css"
 import { Input, Button, Text, InputGroup, InputRightElement, useToast } from '@chakra-ui/react'
 import { colors } from '../../Global/colors'
@@ -14,7 +14,8 @@ import {Cloudinary} from "@cloudinary/url-gen";
 
 
 
-const Settings = () => {
+
+const Settings = (props) => {
 
   const { theme: colors} = useTheme();
   const [show, setShow] = React.useState(false)
@@ -26,22 +27,65 @@ const Settings = () => {
   const [contactNo, setContactNo] = useState('');
   const [dob, setDob] = useState('');
   const [password, setPassword] = useState('');
-
-  //files
-  
   const [file,setFile]=useState(null);
+  
+  
+const baseStyle = {
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '20px',
+  borderWidth: 2,
+  borderRadius: 2,
+  borderColor: colors.primary,
+  borderStyle: 'dashed',
+  backgroundColor: colors.secondaryColor,
+  color: colors.primary,
+  outline: 'none',
+  transition: 'border .24s ease-in-out'
+};
+
+const focusedStyle = {
+  borderColor: '#2196f3'
+};
+
+const acceptStyle = {
+  borderColor: '#00e676'
+};
+
+const rejectStyle = {
+  borderColor: '#ff1744'
+};
+
 
   const {
     acceptedFiles,
     fileRejections,
     getRootProps,
     getInputProps,
+    isFocused,
     isDragActive,
     isDragAccept,
     isDragReject
   } = useDropzone({
-    accept: ['application/pdf']
+    accept: {'pdf':['.pdf']},
+    reject:{'image':['.png','.jpeg','.txt','.html']},
+    maxFiles:1
   });
+
+
+  const style = useMemo(() => ({
+    ...baseStyle,
+    ...(isFocused ? focusedStyle : {}),
+    ...(isDragAccept ? acceptStyle : {}),
+    ...(isDragReject ? rejectStyle : {})
+  }), [
+    isFocused,
+    isDragAccept,
+    isDragReject
+  ]);
+
 
   const acceptedFileItems = acceptedFiles.map(file => {
     return (
@@ -157,14 +201,14 @@ const Settings = () => {
 
                 <div className={styles.field}>
                     <section className="container">
-                      <div {...getRootProps({ className: 'dropzone' })}>
+                      <div {...getRootProps({style})}>
                           <input {...getInputProps()} />
-                          {isDragAccept && (<p>Drop to Add File</p>)}
+                          {isDragAccept && (<p style={{color:'green'}}>Drop to Add File</p>)}
                           {isDragReject && (<div><p className='text-red-500'>Only .pdf file accepted</p></div>)}
-                          {!isDragActive && (<p className='text-white'>Drop some files here ...</p>)}
+                          {!isDragActive && (<p style={{color:colors.primary}}>Drop some files here ...</p>)}
                     </div>
                     <aside>
-                         <ul>{acceptedFileItems}</ul>
+                         <ul style={{color:colors.primary,marginTop:3}}>{acceptedFileItems}</ul>
 
                     </aside>
                     </section>
