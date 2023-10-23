@@ -123,7 +123,7 @@ class InternshipController
                     }
 
                     http_response_code(200);
-                    echo json_encode(["success" => true, 'message' => 'Student added to appliedStudents']);
+                    echo json_encode(["success" => true, 'message' => 'Your Application has been Submitted !']);
                     exit;
                 } else {
                     http_response_code(404);
