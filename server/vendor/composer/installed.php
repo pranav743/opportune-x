@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => '91932/exp-06',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '4703368094bc0272a9cdd836b391a8ca0ba4a44b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         '91932/exp-06' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '4703368094bc0272a9cdd836b391a8ca0ba4a44b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
