@@ -181,7 +181,7 @@ class UserController {
               
             if ($user) {                
                 http_response_code(201);
-                unset($user['_id']);
+                // unset($user['_id']);
                 unset($user['password']); 
                 echo json_encode(['success' => true, 'message' => $user]);
                 

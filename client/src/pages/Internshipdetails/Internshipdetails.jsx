@@ -45,14 +45,21 @@ const Internshipdetails = () => {
                 try {
                     const userDetails = await getUserDetails();
                     setUserDetails(userDetails);
+                    console.log("User = ",userDetails)
                 } catch (error) {
                     showToast(toast, "Error", 'error', "User not Authenticated");
                 }
                 console.log({user_id: userDetails._id, internship_id: id});
                 let data = await axios.post(url+'/apply/internship', {user_id: userDetails._id, internship_id: id});
-                console.log(data);
-                showToast(toast, "Success", 'success', "Applied to the Internship !");
-                return;
+                // console.log(data);
+                if (data.data.success){
+                    showToast(toast, "Success", 'success', "Applied to the Internship !");
+                    return;
+                } else {
+                    showToast(toast, "Error", 'error', data.data.message);
+                    return;
+                }
+                
             }
             else{
                 showToast(toast, "Error", 'error', "You Should Login to Apply !");
