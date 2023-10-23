@@ -82,7 +82,7 @@ function App() {
             <Route path="/signup" element={<SignUp />} />
             <Route path="/internships/browse" element={<Internships />} />
             <Route path='/internships/view/:id' element={<Internshipdetails/>}/>
-            {/* <Route path='/internship/view/:id' element={<Myinternship/>}/> */}
+            <Route path='/Myinternship' element={<Myinternship/>}/>
             <Route path="/courses/browse/all" element={<Courses />} />
             <Route path='/Mycourses' element={<Mycourses/>}/>
             <Route path='/coursedetails' element={<Coursedetails/>}/>
