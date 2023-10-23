@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useToast } from '@chakra-ui/react';
 import { useTheme } from '../../Global/ThemeContext';
 import axios from 'axios';
@@ -34,40 +34,45 @@ const Internshipdetails = () => {
 
     const { isError, isLoading, data } = useQuery({
         queryKey: [`/internship/${id}`],
-    })
+    });
+
+    const buttonRef = useRef(null);
 
     const { theme: colors } = useTheme();
     const toast = useToast();
 
     const applyToInternship = async () => {
+        buttonRef.current.disabled = true;
         try {
             if (isAuthenticated()){
+                var userDetails;
                 try {
-                    const userDetails = await getUserDetails();
+                    userDetails = await getUserDetails();
                     setUserDetails(userDetails);
-                    console.log("User = ",userDetails)
                 } catch (error) {
                     showToast(toast, "Error", 'error', "User not Authenticated");
                 }
-                console.log({user_id: userDetails._id, internship_id: id});
-                let data = await axios.post(url+'/apply/internship', {user_id: userDetails._id, internship_id: id});
-                // console.log(data);
+                let data = await axios.post(url+'/apply/internship', {user_id: userDetails._id.$oid, internship_id: id});
                 if (data.data.success){
-                    showToast(toast, "Success", 'success', "Applied to the Internship !");
+                    showToast(toast, "Success", 'success', data.data.message);
+                    buttonRef.current.disabled = false;
                     return;
                 } else {
                     showToast(toast, "Error", 'error', data.data.message);
+                    buttonRef.current.disabled = false;
                     return;
                 }
                 
             }
             else{
                 showToast(toast, "Error", 'error', "You Should Login to Apply !");
+                buttonRef.current.disabled = false;
                 return;
             }
         } catch (error) {
             console.log(error)
             showToast(toast, "Error", 'error', JSON.stringify(error.response));
+            buttonRef.current.disabled = false;
         }
     }
 
@@ -193,7 +198,7 @@ const Internshipdetails = () => {
 
                 <div className='w-[100%] sm:w-[25%] h-fit p-1 mt-5 sm:mt-0' style={{ backgroundColor: colors.secondary }}>
                     <div className='h-fit  rounded-lg '>
-                        <button className='p-2 rounded-lg w-full text-xl font-bold bg-blue-500 hover:bg-green-500 text-white' onClick={applyToInternship}>APPLY</button>
+                        <button className='p-2 rounded-lg w-full text-xl font-bold bg-blue-500 hover:bg-green-500 text-white' onClick={applyToInternship} ref={buttonRef}>APPLY</button>
                     </div>
 
                     <div className='h-fit p-1 mt-2 rounded-lg w-full mx-auto py-2' style={{ backgroundColor: colors.secondary2, color: colors.font, height: 'auto', display: 'flex', flexDirection: 'column' }}>
