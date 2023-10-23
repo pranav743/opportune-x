@@ -1,6 +1,6 @@
 <?php
     // declare(strict_types=1);
-    require 'vendor/autoload.php';
+    require __DIR__ . '../vendor/autoload.php';
     require_once 'config.php';
 
     use Lcobucci\JWT\Encoding\ChainedFormatter;
