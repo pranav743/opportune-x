@@ -70,7 +70,7 @@ const Internshipdetails = () => {
 
 
   return (
-       <div  className='mx-auto' style={{width: '80%', height: 'auto', padding: '15px', backgroundColor: colors.secondary, boxShadow: `2.5px 5px 7.5px ${colors.hover}` , marginTop: '15px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+       <div  className='mx-auto' style={{width: '100%', height: 'auto', padding: '15px', backgroundColor: colors.secondary, boxShadow: `2.5px 5px 7.5px ${colors.hover}` , marginTop: '0px', borderRadius: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
          <div className=''>
             <img src={img1} className='w-[98%]' class="img-fluid rounded-top" alt="Not found" style={{borderRadius: '20px'}} />
          </div>
@@ -85,19 +85,21 @@ const Internshipdetails = () => {
                 </div>
             </div>
 
-            <div className='h-fit w-[80%] rounded-lg p-2 mt-2 mx-auto' style={{backgroundColor:colors.secondary2,color: colors.font}}>
+            <div className='h-fit w-[100%] rounded-lg p-2 mt-5 mx-auto' style={{backgroundColor:colors.secondary2,color: colors.font}}>
                 {data.map((item,index)=>{
                 
-                return(<div className='flex justify-between p-2 rounded items-center mb-2 mt-2' style={{backgroundColor:colors.secondary,color: colors.font}} key={index}>
-                 <div className='flex  w-[80%] items-center'>
-                 <div className='mr-5 w-[12%]'><img src={item.image} class="img-fluid rounded-top" className='bg-yellow-500' alt="Not found" style={{borderRadius: '8px'}} /></div>
-                  <div className='p-2 rounded-sm'>
+                return(
+                  
+                  <div className='flex justify-between p-2 rounded items-center mb-2 mt-2 h-fit' style={{backgroundColor:colors.secondary,color: colors.font}} key={index}>
+                 <div className='flex w-fit items-center'>
+                 <div className='mr-5 w-[10%]'><img src={item.image} class="img-fluid rounded-top" className='' alt="Not found" style={{borderRadius: '8px'}} /></div>
+                  <div className='p-2 rounded-sm w-fit'>
 
                     <p className='text-xl font-semibold'>{item.title}</p>
                     <p className='text-lg'>{item.companyName}</p>
                   </div>
 
-                  <div className='relative h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full'></div>
+                  <div className='relative h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full '></div>
 
                   <div className='rounded-sm ml-5'>
                     <p className='text-xl font-bold'>Duration</p>
@@ -112,14 +114,14 @@ const Internshipdetails = () => {
                   
                   <div className='relative h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full'></div>
 
-                  <div className='p-2 rounded-sm '>
+                  <div className='p-2 rounded-sm'>
                     <p className='text-xl font-bold'>Stipend</p>
                     <p className='text-lg'>{item.stipend}</p>
                   </div>
                  </div>
                
 
-                  <buttom className='p-2 mr-2 rounded-[6px] text-xl font-bold text-green-500 hover:bg-green-500 !important hover:text-white hover:cursor-pointer' style={{backgroundColor:colors.secondary2}}>View Details</buttom>
+                  <buttom className='p-2 mr-2  rounded-[6px] text-xl font-bold   !important hover:text-white hover:cursor-pointer' style={{backgroundColor:'green', whiteSpace: 'nowrap' ,boxShadow: `2.5px 5px 7.5px ${colors.hover}`}}>View Details</buttom>
                 </div>)
                     
                 })}
