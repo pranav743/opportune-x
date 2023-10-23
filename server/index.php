@@ -18,11 +18,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit();
 }
 
-require 'vendor/autoload.php'; // Autoload FastRoute and other dependencies
-require 'controllers/UserController.php';
-require 'controllers/InternshipController.php';
-require 'controllers/CourseController.php';
-require 'routes/user.php';
+require './vendor/autoload.php';
+require './controllers/UserController.php';
+require './controllers/InternshipController.php';
+require './controllers/CourseController.php';
+require './routes/user.php';
 require './database/db.php';
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
