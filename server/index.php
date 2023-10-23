@@ -35,6 +35,8 @@ if (false !== $pos = strpos($uri, '?')) {
 $uri = rawurldecode(rtrim($uri, '/'));
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+error_reporting(E_ALL & ~E_DEPRECATED);
+
 
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:

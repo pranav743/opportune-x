@@ -14,7 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-use ReturnTypeWillChange\ReturnTypeWillChange;
+
 namespace MongoDB\Model;
 
 use ArrayObject;
@@ -71,8 +71,6 @@ class BSONArray extends ArrayObject implements JsonSerializable, Serializable, U
      * @see http://php.net/mongodb-bson-serializable.bsonserialize
      * @return array
      */
-
-     #[ReturnTypeWillChange]
     public function bsonSerialize()
     {
         return array_values($this->getArrayCopy());
