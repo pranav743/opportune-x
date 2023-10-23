@@ -54,10 +54,15 @@ function LoginModal() {
       }
       try {
         var data = await axios.post(url + '/login', {email, password});
-        data = data.data;
-        setAuthToken(data.token);
-        showToast(toast, "Success", 'success', "Logged In !");
-        window.location = "/";
+        if (!data.data.token){
+          showToast(toast, "Error", 'error', data.data.message);
+        }
+        else{
+          data = data.data;
+          setAuthToken(data.token);
+          showToast(toast, "Success", 'success', "Logged In !");
+          window.location = "/";
+        }
       } catch (error) {
 
         if (error.response.status === 404){
