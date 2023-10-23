@@ -16,7 +16,7 @@ import axios from'axios';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
-const BASE_URL = "http://192.168.0.106:8000"
+const BASE_URL = "https://opportune-x.vercel.app"
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
