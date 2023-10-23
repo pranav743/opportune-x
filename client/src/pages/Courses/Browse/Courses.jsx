@@ -14,33 +14,45 @@ import { url } from '../../../Global/URL';
 
 const Courses = () => {
     const { theme: colors } = useTheme();
-    const [search, setSearch] = useState();
-    const [searchResults, setSearchResults] = useState();
+    const [search, setSearch] = useState('');
+    const [searchResults, setSearchResults] = useState([]);
     const searchRef = useRef();
 
 
 
     const { isError, isLoading, data } = useQuery({
         queryKey: ['/courses/all'],
-        retry: false
+        retry: true
     })
 
     const getSearchResults = async (val) => {
         try {
             const data = await axios.get(url + '/courses/search/' + val);
             let results = data.data.message;
-            setSearchResults(results);
+            if (Array.isArray(results)) {
+                setSearchResults(results);
+            } else {
+                setSearchResults([])
+            }
         } catch (error) {
+            setSearchResults([])
             console.log(error.response.data.message)
         }
     }
 
     useEffect(() => {
-        if (search === '') {
-            setSearchResults([]);
-        }
-        
-    })
+        const intervalId = setInterval(() => {
+            if (search === '') {
+                setSearchResults([]);
+            }
+            console.log(searchResults);
+        }, 1500);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, [search]);
+
 
     if (isError) {
         return (
@@ -75,21 +87,20 @@ const Courses = () => {
                         value={search} onInput={(e) => { getSearchResults(e.target.value); return setSearch(e.target.value); }}
                     />
 
+
+
                     <span style={{ display: 'flex', backgroundColor: colors.font, width: '250px', height: 'auto', flexDirection: 'column', position: 'absolute', top: '42px', zIndex: 1, borderRadius: '5px', maxHeight: '300px', overflowY: 'auto' }}>
-
-
-                        <span style={{ display: 'flex', backgroundColor: colors.font, width: '250px', height: 'auto', flexDirection: 'column', position: 'absolute', top: '42px', zIndex: 1, borderRadius: '5px', maxHeight: '300px', overflowY: 'auto' }}>
-                            {searchResults && searchResults.map((result, index) => (
+                        {
+                            searchResults && searchResults.map((result, index) => (
                                 <div style={{ height: '40px', width: '250px', display: 'flex', alignItems: 'center' }}>
                                     <p className={styles.searchResult} key={index}>
                                         {result.length > 28 ? result.substring(0, 28) + '...' : result}
                                     </p>
                                 </div>
-                            ))}
-                        </span>
-
-
+                            ))
+                        }
                     </span>
+
 
                 </div>
                 <div style={{ height: '25px' }}></div>
