@@ -26,21 +26,24 @@ const Internshipdetails = () => {
       ]) 
       
       async function fetchDataForTab(selectedTab) {
-        switch (selectedTab) {
-          case 0:
+        try {
+          if (selectedTab === 0) {
             const response1 = await axios.get('/internships/completed');
             const data1 = response1.data;
             return data1;
-          case 1:
+          } else if (selectedTab === 1) {
             const response2 = await axios.get('/internships/ongoing');
             const data2 = response2.data;
             return data2;
-          case 2:
+          } else if (selectedTab === 2) {
             const response3 = await axios.get('/internships/applied');
             const data3 = response3.data;
             return data3;
-          default:
+          } else {
             return [];
+          }
+        } catch (error) {
+          showToast(toast, "Error", 'error', data.data.message);
         }
       }
 

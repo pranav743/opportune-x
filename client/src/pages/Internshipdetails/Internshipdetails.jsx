@@ -62,8 +62,8 @@ const Internshipdetails = () => {
                 <div className='h-fit w-[100%] sm:w-[74%] rounded-lg p-1 ' style={{ backgroundColor: colors.secondary2, color: colors.font }}>
                     <div className='w-full px-3 py-2 flex-col'>
                         <p className='text-3xl' style={{ color: colors.font }}>{data.message && JSON.stringify(data.message.title)}</p>
-                        <div className='flex mt-3 items-center ml-5'><Icon as={BsFillBuildingsFill} w={5} h={5} color='blue.500' /><p className='text-lg ml-2'>GOOGLE</p></div>
-                        <div className='flex  items-center ml-5'><LinkIcon w={5} h={4} color="blue.500" /><p className='text-lg ml-2'>www.Google.com</p></div>
+                        <div className='flex mt-3 items-center ml-5'><Icon as={BsFillBuildingsFill} w={5} h={5} color='blue.500' /><p className='text-lg ml-2'>{data.message.companyName}</p></div>
+                        <div className='flex  items-center ml-5'><LinkIcon w={5} h={4} color="blue.500" /><p className='text-lg ml-2'>{`www.${data.message.companyName}.com`}</p></div>
                     </div>
                     <div className='hidden sm:flex sm:w-full p-2 w-0'>
                         <p className='bg-gray-500 rounded-lg p-1 text-lg mr-3'>#MBA</p>
@@ -78,46 +78,40 @@ const Internshipdetails = () => {
                         <div className='mb-8'>
                             <p className='font-bold text-xl'>Company Description</p>
 
-                            <p className='mt-2'>The Helpert premier social networking app and online expert community connects specialists and experts with their users and followers. Join us and establish meaningful connections while building your online presence and growing your business.
-
-                                With Helpert, you can connect directly with your customers and offer your expertise, whether you prefer working from your office or the comfort of your home. Through confirmed paid appointments, you can provide solutions to their problems, share valuable insights, and engage in productive discussions.
-
-                                Becoming an expert on Helpert is a seamless and rewarding process. Get verified to showcase your credibility and start earning money by sharing your knowledge and experience. It doesn't matter what field you specialize in; Helpert welcomes experts from all domains.
-
-                                Helpert acts as a social network app, facilitating direct communication between users and experts/specialists. Through video calls, users from around the world can engage in one-on-one conversations with the experts they admire, seeking guidance, discuss their issues, or simply enjoying a casual conversation.
-
-                                Join Helpert today and unlock a world of opportunities to connect, inspire, and make a difference in the lives of others.</p>
+                            <p className='mt-2'>{data.message.description}</p>
                         </div>
 
                         {/* //Job description */}
 
                         <div className='mb-8'>
                             <p className='font-bold text-xl'>Job Summary</p>
-                            <p className='mt-2'>As an Expert Engagement Intern at Helpert Technologies, you will be instrumental in building and nurturing valuable relationships with our community of experts. Your role will involve reaching out to experts, understanding their needs, and ensuring their satisfaction with our platform.</p>
+                            <p className='mt-2'>{`As an ${data.message.title} at ${data.message.companyName}, you will be instrumental in building and nurturing valuable relationships with our community of experts. Your role will involve reaching out to experts, understanding their needs, and ensuring their satisfaction with our platform.`}</p>
                         </div>
 
                         {/* //Key Responsibility */}
+                        
+
                         <div className='mb-8'>
                             <p className='font-bold text-xl mb-1'>Key Responsibility</p>
                             <List spacing={2}>
                                 <ListItem>
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                                    Managing and coordinating project timelines and deliverables.
                                 </ListItem>
 
                                 <ListItem>
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Assumenda, quia temporibus eveniet a libero incidunt suscipit
+                                    Conducting market research to identify growth opportunities.
                                 </ListItem>
                                 <ListItem>
 
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+                                    Collaborating with cross-functional teams to achieve project goals.
                                 </ListItem>
                                 <ListItem>
 
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+                                    Analyzing data and generating reports for informed decision-making.
                                 </ListItem>
                             </List>
                         </div>
@@ -125,27 +119,7 @@ const Internshipdetails = () => {
                         {/* Qualifications and Requirements: */}
                         <div className='mb-8'>
                             <p className='font-bold text-xl mb-1'>Qualifications and Requirements:</p>
-                            <List spacing={2}>
-                                <ListItem>
-                                    <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                </ListItem>
-
-                                <ListItem>
-                                    <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Assumenda, quia temporibus eveniet a libero incidunt suscipit
-                                </ListItem>
-                                <ListItem>
-
-                                    <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                </ListItem>
-                                <ListItem>
-
-                                    <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                </ListItem>
-                            </List>
+                            
                         </div>
 
                         {/* Perks: */}
@@ -192,7 +166,7 @@ const Internshipdetails = () => {
                             <CheckCircleIcon w={7} h={7} color="blue.500" />
                             <div className='flex-col ml-5' style={{ color: colors.font }}>
                                 <p className='text-xl font-bold' style={{height: 'auto'}}>Registered</p>
-                                <p>20000</p>
+                                <p>{(data.message.numberOfOpenings)*500}</p>
                             </div>
                         </div>
 
@@ -200,7 +174,7 @@ const Internshipdetails = () => {
                             <ViewIcon w={8} h={8} color="blue.500" />
                             <div className='flex-col ml-5' style={{ color: colors.font }}>
                                 <p className='text-xl font-bold'>Impression</p>
-                                <p>20000</p>
+                                <p>{(data.message.numberOfOpenings)*1000}</p>
                             </div>
                         </div>
 
@@ -208,7 +182,7 @@ const Internshipdetails = () => {
                             <CalendarIcon w={8} h={8} color="blue.500" />
                             <div className='flex-col ml-5' style={{ color: colors.font }}>
                                 <p className='text-xl font-bold'>Dedline</p>
-                                <p>20th August 2023</p>
+                                <p>{data.message.applicationDeadline}</p>
                             </div>
                         </div>
                     </div>
@@ -218,7 +192,7 @@ const Internshipdetails = () => {
                             <Icon as={MdLocationPin} w={8} h={8} color='blue.500' />
                             <div className='flex-col ml-5' style={{ color: colors.font }}>
                                 <p className='text-xl font-bold'>Location</p>
-                                <p>Mumbai,Maharashtra</p>
+                                <p>{data.message.location.city},{data.message.location.state}</p>
                             </div>
                         </div>
 
@@ -226,7 +200,7 @@ const Internshipdetails = () => {
                             <Icon as={AiFillClockCircle} w={8} h={8} color='blue.500' />
                             <div className='flex-col ml-5' style={{ color: colors.font }}>
                                 <p className='text-xl font-bold'>Duration</p>
-                                <p>5 Months</p>
+                                <p>{data.message.duration}</p>
                             </div>
                         </div>
 
@@ -234,7 +208,7 @@ const Internshipdetails = () => {
                             <Icon as={RiMoneyDollarCircleFill} w={8} h={8} color='blue.500' />
                             <div className='flex-col ml-5' style={{ color: colors.font }}>
                                 <p className='text-xl font-bold'>Stipend</p>
-                                <p>70000/Month</p>
+                                <p>{`${data.message.stipend}/Month`}</p>
                             </div>
                         </div>
                     </div>
