@@ -17,6 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit();
 }
+use Zend\Diactoros\ServerRequestFactory;
 
 require __DIR__ . '/vendor/autoload.php';
 require 'controllers/UserController.php';
@@ -53,7 +54,11 @@ switch ($routeInfo[0]) {
         $controllerName = $handler[0];
         $method = $handler[1];
         $controller = new $controllerName();
-        // $controller->$method();
-        $controller->$method($request=null, $response=null, $vars);
+        
+
+        $request = ServerRequestFactory::fromGlobals();
+
+        $response = new \Zend\Diactoros\Response();
+        $controller->$method($request, $response, $vars);
         break;
 }

@@ -118,6 +118,8 @@ class UserController {
         }
     }
 
+    
+
     private function generateJWT($userId) {
         $tokenBuilder = (new Builder(new JoseEncoder(), ChainedFormatter::default()));
         $algorithm    = new Sha256();
@@ -193,6 +195,62 @@ class UserController {
         } else {
             http_response_code(400); // Bad Request
             echo json_encode(['success' => false, 'message' => 'Something Went Wrong']);
+        }
+    }
+
+
+    public function updateProfile($request, $response, $args) {
+
+        
+        // $requestBody = $request->getBody();
+        // $requestBodyContents = $requestBody->getContents();
+        // print_r($requestBodyContents);
+
+        $data = json_decode(file_get_contents('php://input'), true);
+    
+
+        if (isset($data['_id'])) {
+            // Sanitizing and validate user input
+            $userObjectId = new ObjectId($data['_id']);
+    
+            $db = getDatabase();
+            $collection = $db->users;
+    
+            $existingUser = $collection->findOne(['_id' => $userObjectId]);
+    
+            if (!$existingUser) {
+                http_response_code(400); // Bad Request
+                echo json_encode(["success" => false, 'message' => 'Invalid Session']);
+                exit;
+            } else {
+                
+                
+                unset($data['_id']);
+                unset($data['email']);
+                
+                foreach ($data as $key => $value) {
+                    $existingUser[$key] = $value;
+                }
+                $existingUser['updatedAt'] = new MongoDB\BSON\UTCDateTime();
+                $filter = ['_id'=> $userObjectId];
+                $update = ['$set'=> $existingUser];
+                
+                $result = $collection->updateOne($filter, $update);
+            
+    
+                if ($result->getModifiedCount() > 0) {
+                    http_response_code(201); // Created
+                    echo json_encode(["success" => true, 'message' => 'Updated Profile']);
+                    exit;
+                } else {
+                    http_response_code(500); // Internal Server Error
+                    echo json_encode(["success" => false, 'message' => 'Profile cannot be updated']);
+                    exit;
+                }
+            }
+        } else {
+            http_response_code(400); 
+            echo json_encode(["success" => false, 'message' => 'Invalid Data Provided']);
         }
     }
     

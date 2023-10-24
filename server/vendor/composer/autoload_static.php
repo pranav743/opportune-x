@@ -13,6 +13,10 @@ class ComposerStaticInita327dea79e3f5528100130d089667342
     );
 
     public static $prefixLengthsPsr4 = array (
+        'Z' => 
+        array (
+            'Zend\\Diactoros\\' => 15,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
@@ -20,6 +24,7 @@ class ComposerStaticInita327dea79e3f5528100130d089667342
         ),
         'P' => 
         array (
+            'Psr\\Http\\Message\\' => 17,
             'Psr\\Clock\\' => 10,
         ),
         'M' => 
@@ -46,6 +51,10 @@ class ComposerStaticInita327dea79e3f5528100130d089667342
     );
 
     public static $prefixDirsPsr4 = array (
+        'Zend\\Diactoros\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-diactoros/src',
+        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
@@ -53,6 +62,10 @@ class ComposerStaticInita327dea79e3f5528100130d089667342
         'StellaMaris\\Clock\\' => 
         array (
             0 => __DIR__ . '/..' . '/stella-maris/clock/src',
+        ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
         'Psr\\Clock\\' => 
         array (
