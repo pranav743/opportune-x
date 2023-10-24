@@ -92,36 +92,36 @@ const Internshipdetails = () => {
                   
                   <div className='flex justify-between p-2 rounded items-center mb-2 mt-2 h-fit' style={{backgroundColor:colors.secondary,color: colors.font}} key={index}>
                  <div className='flex w-fit items-center'>
-                 <div className='mr-5 w-[10%]'><img src={item.image} class="img-fluid rounded-top" className='' alt="Not found" style={{borderRadius: '8px'}} /></div>
+                 <div className='hidden w-0 mr-5 lg:w-[10%] lg:flex'><img src={item.image} class="img-fluid rounded-top" className='' alt="Not found" style={{borderRadius: '8px'}} /></div>
                   <div className='p-2 rounded-sm w-fit'>
 
-                    <p className='text-xl font-semibold'>{item.title}</p>
-                    <p className='text-lg'>{item.companyName}</p>
+                    <p className='text-sm font-semibold sm:text-lg md:text-xl '>{item.title}</p>
+                    <p className='text-sm sm:text-lg'>{item.companyName}</p>
                   </div>
 
-                  <div className='relative h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full '></div>
+                  <div className='relative md:h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full hidden sm:block h-12'></div>
 
-                  <div className='rounded-sm ml-5'>
-                    <p className='text-xl font-bold'>Duration</p>
-                    <p className='text-lg'>{item.duration}</p>
+                  <div className='rounded-sm ml-5 hidden sm:block'>
+                    <p className='text-lg font-bold sm:text-xl'>Duration</p>
+                    <p className='text-lg sm:text'>{item.duration}</p>
                   </div>
-                  <div className='relative h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full'></div>
+                  <div className='relative md:h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full hidden lg:block h-12'></div>
 
-                  <div className='rounded-sm ml-5'>
-                    <p className='text-xl font-semibold'>Location</p>
+                  <div className='rounded-sm ml-5 hidden lg:block'>
+                    <p className='text-xl font-semibold '>Location</p>
                     <p className='text-lg'>{item.location.city},{item.location.state}</p>
                   </div>
                   
-                  <div className='relative h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full'></div>
+                  <div className='relative md:h-16 bg-gray-400 p-[0.25px] mx-3 rounded-full hidden lg:block h-12'></div>
 
-                  <div className='p-2 rounded-sm'>
+                  <div className='p-2 rounded-sm hidden lg:block'>
                     <p className='text-xl font-bold'>Stipend</p>
-                    <p className='text-lg'>{item.stipend}</p>
+                    <p className='text-lg '>{item.stipend}</p>
                   </div>
                  </div>
                
 
-                  <buttom className='p-2 mr-2  rounded-[6px] text-xl font-bold   !important hover:text-white hover:cursor-pointer' style={{backgroundColor:'green', whiteSpace: 'nowrap' ,boxShadow: `2.5px 5px 7.5px ${colors.hover}`}}>View Details</buttom>
+                  <buttom className='p-2 mr-2  rounded-[6px] text-base sm:text-sm lg:text-lg font-bold   !important hover:text-white hover:cursor-pointer' style={{backgroundColor:'green', whiteSpace: 'nowrap' ,boxShadow: `2.5px 5px 7.5px ${colors.hover}`}}>View Details</buttom>
                 </div>)
                     
                 })}
