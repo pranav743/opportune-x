@@ -53,7 +53,8 @@ switch ($routeInfo[0]) {
         $controllerName = $handler[0];
         $method = $handler[1];
         $controller = new $controllerName();
-        // $controller->$method();
-        $controller->$method($request=null, $response=null, $vars);
+        // $request = \Psr\Http\Message\ServerRequestFactory::fromGlobals();
+        // $response = new \Zend\Diactoros\Response();
+        $controller->$method($request, $response, $vars);
         break;
 }

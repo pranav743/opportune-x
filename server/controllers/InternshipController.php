@@ -68,6 +68,44 @@ class InternshipController
         }
     }
 
+    public function getInternshipsByIds($request, $response, $args)
+    {
+        $data = json_decode($request->getBody(), true);
+        echo $data;
+
+        if (is_array($data) && !empty($data)) {
+            $internshipIds = $data; // Assuming the JSON body contains an array of internship IDs
+            $db = getDatabase();
+            $collection = $db->internships;
+
+            try {
+                $objectIds = [];
+                foreach ($internshipIds as $id) {
+                    $objectIds[] = new MongoDB\BSON\ObjectId($id);
+                }
+
+                $internships = $collection->find(['_id' => ['$in' => $objectIds]]);
+
+                $internshipList = iterator_to_array($internships);
+
+                if (!empty($internshipList)) {
+                    http_response_code(200); // OK
+                    echo json_encode(["success" => true, 'message' => $internshipList]);
+                } else {
+                    http_response_code(404); // Not Found
+                    echo json_encode(["success" => false, 'message' => 'No internships found with the provided IDs.']);
+                }
+            } catch (Exception $e) {
+                http_response_code(500); // Internal Server Error
+                echo json_encode(["success" => false, 'message' => 'An error occurred while fetching internships.']);
+            }
+        } else {
+            http_response_code(400); // Bad Request
+            echo json_encode(["success" => false, 'message' => 'Invalid or empty array of IDs in the request body.']);
+        }
+    }
+
+
     public function applyForInternship($request, $response, $args)
     {
         try {
@@ -77,16 +115,16 @@ class InternshipController
             $user_collection = $db->users;
 
             if (isset($data['user_id']) && isset($data['internship_id'])) {
-                
+
                 try {
                     $existingUser = $user_collection->findOne(['_id' => new MongoDB\BSON\ObjectId($data['user_id'])]);
                     $existingInternship = $internship_collection->findOne(['_id' => new MongoDB\BSON\ObjectId($data['internship_id'])]);
                 } catch (Exception $e) {
                     http_response_code(404);
-                    echo json_encode(["success" => false, 'message' => 'Invalid Internship or User', 'error'=> $e]);
+                    echo json_encode(["success" => false, 'message' => 'Invalid Internship or User', 'error' => $e]);
                     exit;
                 }
-            
+
 
                 if ($existingUser && $existingInternship) {
                     $studentId = $data['user_id'];
@@ -107,10 +145,10 @@ class InternshipController
 
                     if (!isset($existingUser['myInternshipApplications'])) {
                         $myInternshipApplications = [];
-                    } else{
+                    } else {
                         $myInternshipApplications = iterator_to_array($existingUser['myInternshipApplications']);
                     }
-                    
+
                     $internshipId = $data['internship_id'];
 
                     if (!in_array($internshipId, $myInternshipApplications)) {
