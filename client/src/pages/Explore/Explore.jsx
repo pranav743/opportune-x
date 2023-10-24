@@ -1,106 +1,94 @@
-import React, { useRef, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import {  useToast } from '@chakra-ui/react';
+  import { useTheme } from '../../Global/ThemeContext';
+  import axios from 'axios';
+  import showToast from "../../Global/Toast";
+  import { url } from '../../Global/URL';
+  import { CalendarIcon,CheckCircleIcon,ViewIcon,InfoIcon,LinkIcon} from '@chakra-ui/icons'
+  import {
+    List,
+    ListItem,
+    ListIcon,
+    OrderedList,
+    UnorderedList,
+  } from '@chakra-ui/react'
 
-const ExplorePage = () => {
-  const [myImage, setMyImage] = useState(null);
-  const [imagePreview, setImagePreview] = useState('');
-  const [data, setData] = useState(false);
-  const fileInputRef = useRef(null);
+  import { Icon } from '@chakra-ui/react'
+  import {VscDebugBreakpointLog } from 'react-icons/vsc'
+  import {MdCheckCircle,MdOutlineAssignmentTurnedIn} from 'react-icons/md'
+  import {AiFillClockCircle,AiOutlineMobile,AiOutlineTrophy} from 'react-icons/ai'
+  import {RiMoneyDollarCircleFill} from 'react-icons/ri'
+  import {BsFillBuildingsFill,BsFillCameraVideoFill} from 'react-icons/bs'
+  import {GrArticle} from 'react-icons/gr'
+  import {IoIosAlarm} from 'react-icons/io'
+  import {HiDownload,HiOutlineNewspaper} from 'react-icons/hi'
+  import {BiVideo} from 'react-icons/bi'
 
-  const handleButtonClick = () => {
-    fileInputRef.current.click();
-  };
+  import ReactStars from 'react-stars'
+  import { color, wrap } from 'framer-motion';
+  import img1 from './Compete.png'
+  import img2 from './Jobs.png'
+  import img3 from './Learn.png'
+  import img4 from './Img4.webp'
+  import Card from '../Internship/Browse/Card';
+  import Cards from '../Courses/Browse/Card';
+  import { useQuery } from '@tanstack/react-query';
 
-  const getPrediction = async () => {
-    try {
-      const formData = new FormData();
-      formData.append('image', myImage);
 
-      const options = {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      };
+const Explore = () => {
+    
+    const {theme: colors} = useTheme();
+    const toast = useToast();
 
-      const url = 'http://localhost:5001/predict';
-      const res = await axios.post(url, formData, options);
-      console.log(res);
-      setData(res.data);
+    const { data:data1 } = useQuery({
+        queryKey: ['/courses/all'],
+        retry: true
+    })
 
-      // Handle response data here
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setMyImage(file);
-
-    // Display image preview for image files
-    if (file && file.type.startsWith('image/')) {
-      setImagePreview(URL.createObjectURL(file));
-    } else {
-      setImagePreview('');
-    }
-  };
+    const { isError, isLoading, data } = useQuery({
+        queryKey: ['/route1'],
+    })
 
 
   return (
-    <div>
-      <p style={{ textAlign: 'center', margin: '10px 0', height: 'auto', color: 'darkgreen', fontWeight: 'bold' }}>Upload image of the correct Plant to get Prediction</p>
-      <div style={{display: 'flex', alignItems: 'center', flexDirection: 'column'}}>
-      <img src={imagePreview} alt="UPLOAD IMAGE" style={{ minHeight: '200px', minWidth: '200px',maxHeight: '200px', maxWidth: '200px', boxShadow: '0 0 15px #555', borderRadius: '10px', margin: '10px' }} />
-      <button onClick={handleButtonClick} style={{backgroundColor: "white", padding: '5px 20px', letterSpacing: '1px', boxShadow: '0 0 5px #000', margin: '10px 15px 0px 15px', width: '80%', fontWeight: 'bold', border: 'solid 0.5px black'}}>
-        Click Here to upload Image
-      </button>
-      <input
-        type="file"
-        // accept="image/*"
-        id="fileInput"
-        ref={fileInputRef}
-        onChange={handleFileChange}
-        style={{ display: 'none' }}
-        accept="image/*;capture=camera"
-      />
-      </div>
-      
-      <div style={{display: 'flex', justifyContent: 'center'}}>
-      <button onClick={getPrediction} style={{ backgroundColor: "black", padding: '5px 20px', letterSpacing: '1px', boxShadow: '0 0 5px #000', margin: '10px 15px 20px 15px', width: '80%', color: 'white', fontWeight: 'bold' }}>Predict</button>
-      </div>
+       <div  className='mx-auto sm:w-[100%] w-[100%]' style={{height: 'fit', padding: '15px', backgroundColor: colors.secondary2, boxShadow: `2.5px 5px 7.5px ${colors.hover}` , marginTop: '0', borderRadius: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center',flexWrap:'wrap'}}>
+         <div className='w-full p-2 flex items-center mt-6  rounded-lg mb-4' style={{ backgroundColor: colors.secondary, color: colors.font }}>
+            <div className='my-2 pl-8 '>
+                <p className='text-xl font-bold  sm:text-7xl'>Connecting Talent, Colleges, & Recruiters</p>
+                <hr className='border-yellow-500 border-[1px] rounded-full' ></hr>
+                <p className='text-sm font-semibold mt-2 sm:text-xl'>Explore opportunities from across the globe to learn, showcase skills, gain CV points, & get hired by your dream company.</p>
+            </div>
+            <div className='flex'>
+              <img src={img4} className='hidden sm:w-[80%] sm:block ml-20'/>
 
-      { (data && !data.error) &&
+            </div>
+         </div>
+         <div className=' h-50 w-full rounded-lg' style={{ backgroundColor: colors.secondar, color: colors.font }}>
+            <div className='flex-col items-center justify-center'>
+                <p className='text-center font-extrabold text-3xl mt-2 p-2 sm:text-3xl'>TOP OPPORTUNITIES</p>
+                <div className='flex flex-wrap justify-center'>                
 
-      <div style={{width: '80vw', marginLeft: '10vw', padding: '15px 10px 15px 15px', display: 'flex', flexDirection: 'column', backgroundColor: 'lightblue', borderRadius: '15px', boxShadow: '0 0 20px black', marginBottom: '5px'}}>
+                {
+                        data && data.slice(0, 6).map((internship, index) => (
+                            <Card title={internship.title} description={internship.description} _id={internship._id} key={index} />
+                        ))
+}
+                </div>
+            </div>
 
-        <div style={{height: 'auto', padding: '5px 2px', color: 'darkred', fontSize: '17px', fontWeight: 'bold'}}>{data.disease_name}</div>
-        <div style={{height: 'auto', padding: '5px 2px', color: 'black', fontSize: '15px'}}>{data.description}</div>
+            <div className='flex-col items-center justify-center'>
+                <p className='text-center font-extrabold text-3xl mt-2 p-2 '>TOP COURSES</p>
+                <div className='flex flex-wrap justify-center'>                
+                {
+                        data1 && data1.map((course, index) => (
+                            <Cards courseTitle={course.courseTitle} category={course.category} description={course.description} rating={course.rating} image={course.image} fee={course.fee} durationInWeeks={course.durationInWeeks} subject={course.subject} _id={course._id.$oid} />
+                        ))
+                    }
+                </div>
+            </div>
+         </div>
+       </div>
+  )
+}
 
-        <div style={{height: 'auto', padding: '5px 2px', color: 'darkred', fontSize: '16px'}}>Pesticides :</div>
-        <div style={{height: 'auto', padding: '5px 2px', color: 'black', fontSize: '15px'}}>
-          <ul style={{marginLeft: '15px'}}>
-          {data.pesticides.map((pesticide, index)=>(
-                <li key={index}>{pesticide}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div style={{height: 'auto', padding: '5px 2px', color: 'darkred', fontSize: '16px'}}>Preventive Measures :</div>
-        <div style={{height: 'auto', padding: '5px 2px', color: 'black', fontSize: '15px'}}>
-          <ul style={{marginLeft: '15px'}}>
-            {data.prevention.map((prevention, index)=>(
-                <li key={index}>{prevention}</li>
-            ))}
-          
-          </ul>
-        </div>
-          
-      </div>
-
-      }
-      <div><p style={{textAlign: 'center', color: 'red', margin: '15px 10px'}}>These Predictions are not 100% accurate</p></div>
-    </div>
-  );
-};
-
-export default ExplorePage;
+export default Explore;
