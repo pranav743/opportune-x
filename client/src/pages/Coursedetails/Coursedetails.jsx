@@ -15,236 +15,198 @@ import {  useToast } from '@chakra-ui/react';
 
   import { Icon } from '@chakra-ui/react'
   import {VscDebugBreakpointLog } from 'react-icons/vsc'
-  import {MdLocationPin} from 'react-icons/md'
-  import {AiFillClockCircle} from 'react-icons/ai'
+  import {MdCheckCircle,MdOutlineAssignmentTurnedIn} from 'react-icons/md'
+  import {AiFillClockCircle,AiOutlineMobile,AiOutlineTrophy} from 'react-icons/ai'
   import {RiMoneyDollarCircleFill} from 'react-icons/ri'
-  import {BsFillBuildingsFill} from 'react-icons/bs'
-import { wrap } from 'framer-motion';
+  import {BsFillBuildingsFill,BsFillCameraVideoFill} from 'react-icons/bs'
+  import {GrArticle} from 'react-icons/gr'
+  import {IoIosAlarm} from 'react-icons/io'
+  import {HiDownload,HiOutlineNewspaper} from 'react-icons/hi'
+  import {BiVideo} from 'react-icons/bi'
 
-  
-  
+  import ReactStars from 'react-stars'
+  import meta from './meta.png';
+  import microsoft from './microsoft.png'
+  import apple from './apple-logo.png'
+  import search from './search.png'
+  import { color, wrap } from 'framer-motion';
 
-
-const Internshipdetails = () => {
+const Coursedetails = () => {
     
     const {theme: colors} = useTheme();
     const toast = useToast();
 
 
   return (
-       <div  className='mx-auto sm:w-[100%] w-[100%]' style={{height: 'auto', padding: '15px', backgroundColor: colors.secondary, boxShadow: `2.5px 5px 7.5px ${colors.hover}` , marginTop: '0', borderRadius: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center',flexWrap:'wrap'}}>
-         {/* <div className=''>
-            <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29tcGFueXxlbnwwfHwwfHx8MA%3D%3D" class="img-fluid rounded-top " alt="Not found" style={{borderRadius: '20px', transform: 'translateX(15px)'}} />
-         </div> */}
+       <div  className='mx-auto sm:w-[100%] w-[100%]' style={{height: 'fit', padding: '15px', backgroundColor: colors.secondary2, boxShadow: `2.5px 5px 7.5px ${colors.hover}` , marginTop: '0', borderRadius: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center',flexWrap:'wrap'}}>
+          <div className='flex w-[100%]'>
+             <div className='flex-col w-[70%]'>
+                    <div className='w-[100%] h-fit p-8 rounded-md leading-8 mt-3 ' style={{backgroundColor:colors.secondary,color:colors.font}}>
+                        <div className='font-extrabold text-5xl'>Microsoft Project Course Complete,2013</div>
+                        <div className='font-bold'>Learn Everything you need to know about Microsoft Project.Beginner to Expert</div>
+                        <div className='flex items-center'><div className='font-semibold text-md mr-5'>Highest Rated</div><ReactStars count={5} value={4.5} half={true} size={20} edit={false} /><div className='font-semibold text-md ml-5'>(5,928 Students)</div></div>
+                        <div className='font-semibold text-md mr-5'>Created by TIA Education,Andrew Ramdaya!</div>
+                        <div className='font-semibold text-md mr-5'><span>Last updated :10/2023</span><span className='ml-5'>English</span><span className='ml-5'>English [Auto]</span></div>
+                    </div>
 
-         <div className='w-[100%] bg-yellow-500 h-[800px] p-2 flex'>
-           <div className='w-[100%] bg-black h-[60%] p-6 flex'>
-           <div className='w-[70%] bg-violet-500 h-[100%] '></div>
-           <div className='w-[30%] bg-green-600 h-[100%] mt-10 ml-4'></div>
+                    <div className='h-fit w-[100%] rounded-lg p-5 mt-4' style={{backgroundColor:colors.secondary,color: colors.font}}>
+                        
+                        <div className='rounded-md flex-col p-5' style={{backgroundColor:colors.secondary2,color: colors.font}}>
+                        <p className='text-center font-extrabold text-3xl p-2 mb-2'>What You Will Learn</p>
+                        <div className='flex justify-around font-bold'>
+                        <List spacing={3} className='whitespace-nowrap'>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        Build GUIs and Desktop applications with Python
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        You will learn automation, game, app and web development, and machine learning.
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        You will learn Request, Flask, Pandas, NumPy, Scikit Learn, Plotly, and Matplotlib.
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        Be able to build fully fledged websites and web apps with Python
+                                    </ListItem>
+                            </List>
 
+                            <List spacing={3} className='whitespace-nowrap'>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        You will master the Python programming by building 100 unique projects over 100 days.
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        You will be able to program in Python professionally
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        Create a portfolio of 100 Python projects to apply for developer jobs
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        Be able to use Python for data science and machine learning
+                                    </ListItem>
+                            </List>
+
+                            </div>
+                        </div>
+
+                        <div className='rounded-lg flex-col mt-5 p-5' style={{backgroundColor:colors.secondary2,color: colors.font}}>
+                         <p className='text-center font-extrabold text-3xl p-2 ' style={{color: colors.font2}}>What you will learn</p>
+                         <div className='flex justify-around text-xl font-bold' >
+                        <List spacing={3}>
+                                    <ListItem>
+                                        <ListIcon as={BiVideo} color='green.500' />
+                                        54 hours on-demand video
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdOutlineAssignmentTurnedIn} color='green.500' />
+                                        Assignments
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={HiOutlineNewspaper} color='green.500' />
+                                        221 articles
+                                    </ListItem>
+
+                            </List>
+
+                            <List spacing={3}>
+                                    <ListItem>
+                                        <ListIcon as={HiDownload} color='green.500' />
+                                        154 downloadable resources
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={AiOutlineMobile} color='green.500' />
+                                        Access on mobile and TV
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={AiOutlineTrophy} color='green.500' />
+                                        Certificate of completion
+                                    </ListItem>
+
+                            </List>
+
+                         </div>
+                        </div>
+
+                        <div className='rounded-md flex-col mt-5 p-2' style={{backgroundColor:colors.secondary2,color: colors.font}}>
+                        <p className='text-center font-bold text-3xl mb-8 mt-3'>Top Companies Offer This Course To Their Employees</p>
+                        <div className='flex justify-around p-2'>
+                        <img src={meta} className='w-[55px] rounded-lg'/>
+                        <img src={search} className='w-[55px] rounded-lg'/>
+                        <img src={microsoft} className='w-[55px] rounded-lg'/>
+                        <img src={apple} className='w-[55px] rounded-lg'/>
+                        </div>
+                        </div>
+
+
+                        <div className='rounded-md flex-col mt-5 p-3' style={{backgroundColor:colors.secondary2,color: colors.font}}>
+                        <p className=' p-2 text-center font-bold text-3xl'>What you will learn</p>
+                        <div className='flex-col justify-around p-2' >
+                            <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{backgroundColor:colors.secondary,color: colors.font}}> WEEK 1 : Introduction to Microsoft</div>
+                            <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{backgroundColor:colors.secondary,color: colors.font}}> WEEk 2 : Introduction to Microsoft</div>
+                            <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg my-2' style={{backgroundColor:colors.secondary,color: colors.font}}> WEEk 3 : Introduction to Microsoft</div>
+                            <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{backgroundColor:colors.secondary,color: colors.font}}> WEEK 4 : Introduction to Microsoft</div>
+                        </div>
+                        </div>
+
+                        <div className='rounded-md flex-col mt-5 p-3' style={{backgroundColor:colors.secondary2,color: colors.font}}>
+                        <p className=' text-center font-bold text-3xl'>Requirements</p>
+                        <div className='flex-col  justify-around p-2'>
+                        <List spacing={3} className='font-semibold text-xl'>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        No programming experience needed - I'll teach you everything you need to know
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        A Mac or PC computer with access to the internet
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        No paid software required - I'll teach you how to use PyCharm, Jupyter Notebooks and Google Colab
+                                    </ListItem>
+                                    <ListItem>
+                                        <ListIcon as={MdCheckCircle} color='green.500' />
+                                        I'll walk you through, step-by-step how to get all the software installed and set up
+                                    </ListItem>
+
+                            </List>
+                        </div>
+                        </div>
+
+                    </div>
+             </div>
+
+             <div className='w-[30%]'>
+             <div className='h-max p-3 z-0 w-fit fixed flex flex-col items-end'>
+              <div className='w-fit h-fit rounded-lg p-2'>
+                 <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29tcGFueXxlbnwwfHwwfHx8MA%3D%3D" className='w-[100%] rounded-lg h-[347px]'/>
+              </div>
+
+              <div className='w-[100%] h-fit rounded-lg mt-1 ' style={{backgroundColor:colors.secondary,color: colors.font}}>
+                 <div className='text-xl p-2 font-bold flex-col justify-center items-center'>
+                    <span className='mr-5 text-4xl ml-8'>$13.66</span><s>$29.54</s><span className='text-green-400 ml-5'>86% off</span>
+                    <div className='flex ml-6 mt-1 px-2 text-red-600 text-lg items-center font-thin'><Icon as={IoIosAlarm} w={5} h={5} color='red.400' /><span className='font-bold mx-2'>2 days</span> at this price!!</div>
+                    <div className='bg-green-400 w-[80%] ml-8 p-3 text-center rounded-lg text-white mt-4 hover:cursor-pointer hover:bg-green-700'>BUY</div>
+                    <div className='text-base mt-4  w-full text-center'>30-Day Money-Back Guarantee</div>
+                    <div className='text-base mt-1  w-full text-center'>Full Lifetime Access</div>
+                    <div className='text-lg mt-1  w-full text-center flex flex-row items-center px-5 font-bold' > <hr className='w-full' style={{ border: `1px solid ${colors.font}` }}/><span className='font-bold text-lg mx-1'>OR</span><hr className='w-full' style={{ border: `1px solid ${colors.font}` }}/></div>
+                    <div className='text-2xl mt-1 w-full text-center font-bold'>Subscribe to Oppotune’s top courses</div>
+                    <div className='text-base mt-1  text-gray-500 w-full text-center'>Get this course, plus 10,500+ of our top-rated courses, with Personal Plan.</div>
+                    <div className='bg-blue-400 w-[80%] ml-8 p-3 text-center rounded-lg text-white mt-4 mb-2 hover:cursor-pointer hover:bg-blue-700'>Subscribe</div>
+                 </div>
+              </div>
            </div>
-
-         </div>
-
-         <div className='flex flex-col sm:flex-row w-full mx-auto mt-6 p-1 justify-between flex-wrap'>
-            <div className='h-fit w-[100%] sm:w-[74%] rounded-lg p-1 ' style={{backgroundColor:colors.secondary2,color: colors.font}}>
-                <div className='w-full px-3 py-2 flex-col'>
-                   <p className='text-3xl' style={{color: colors.font}}>EXPERT RELATIONS INTERNSHIP</p>
-                   <div className='flex mt-3 items-center ml-5'><Icon as={BsFillBuildingsFill} w={5} h={5} color='blue.500' /><p className='text-lg ml-2'>GOOGLE</p></div>
-                   <div className='flex  items-center ml-5'><LinkIcon w={5} h={4} color="blue.500"/><p className='text-lg ml-2'>www.Google.com</p></div>
-                </div>
-                <div className='hidden sm:flex sm:w-full p-2 w-0'>
-                     <p className='bg-gray-500 rounded-lg p-1 text-lg mr-3'>#MBA</p>
-                     <p className='bg-gray-500 rounded-xl p-1 text-lg mr-3'>#Content</p>                                  
-                     <p className='bg-gray-500 rounded-xl p-1 text-lg mr-3'>#Human Resource</p>                                   
-                     <p className='bg-gray-500 rounded-xl p-1 text-lg mr-3'>#Marketing</p>                                   
-                </div>
-
-                <div className='w-full p-2 mt-2 rounded-lg'>
-                    
-                    {/* //company description */}
-                     <div className='mb-8'>
-                        <p className='font-bold text-xl'>Company Description</p>
-
-                        <p className='mt-2'>The Helpert premier social networking app and online expert community connects specialists and experts with their users and followers. Join us and establish meaningful connections while building your online presence and growing your business.
-
-With Helpert, you can connect directly with your customers and offer your expertise, whether you prefer working from your office or the comfort of your home. Through confirmed paid appointments, you can provide solutions to their problems, share valuable insights, and engage in productive discussions.
-
-Becoming an expert on Helpert is a seamless and rewarding process. Get verified to showcase your credibility and start earning money by sharing your knowledge and experience. It doesn't matter what field you specialize in; Helpert welcomes experts from all domains.
-
-Helpert acts as a social network app, facilitating direct communication between users and experts/specialists. Through video calls, users from around the world can engage in one-on-one conversations with the experts they admire, seeking guidance, discuss their issues, or simply enjoying a casual conversation.
-
-Join Helpert today and unlock a world of opportunities to connect, inspire, and make a difference in the lives of others.</p>
-                     </div>    
-
-                    {/* //Job description */}
-
-                    <div className='mb-8'>
-                        <p className='font-bold text-xl'>Job Summary</p>
-                        <p className='mt-2'>As an Expert Engagement Intern at Helpert Technologies, you will be instrumental in building and nurturing valuable relationships with our community of experts. Your role will involve reaching out to experts, understanding their needs, and ensuring their satisfaction with our platform.</p>
-                     </div> 
-
-                    {/* //Key Responsibility */}
-                    <div className='mb-8'>
-                        <p className='font-bold text-xl mb-1'>Key Responsibility</p>
-                            <List spacing={2}>
-                                        <ListItem>
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                        </ListItem>
-
-                                        <ListItem>
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Assumenda, quia temporibus eveniet a libero incidunt suscipit
-                                        </ListItem>
-                                        <ListItem>
-
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                        </ListItem>
-                                        <ListItem>
-
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                        </ListItem>
-                            </List>
-                     </div> 
-
-                    {/* Qualifications and Requirements: */}
-                    <div className='mb-8'>
-                        <p className='font-bold text-xl mb-1'>Qualifications and Requirements:</p>
-                            <List spacing={2}>
-                                        <ListItem>
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                        </ListItem>
-
-                                        <ListItem>
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Assumenda, quia temporibus eveniet a libero incidunt suscipit
-                                        </ListItem>
-                                        <ListItem>
-
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                        </ListItem>
-                                        <ListItem>
-
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                        </ListItem>
-                            </List>
-                     </div> 
-
-                {/* Perks: */}
-
-                    <div className='mb-8'>
-                        <p className='font-bold text-xl mb-1'>Perks:</p>
-                            <List spacing={2}>
-                                        <ListItem>
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                                        </ListItem>
-
-                                        <ListItem>
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Assumenda, quia temporibus eveniet a libero incidunt suscipit
-                                        </ListItem>
-                                        <ListItem>
-
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                        </ListItem>
-                                        <ListItem>
-
-                                            <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                            Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
-                                        </ListItem>
-                            </List>
-                     </div> 
-
-                </div>
-            </div>
-
-
-
-            {/* //Side Panel */}
-
-            <div className='w-[100%] sm:w-[25%] h-fit p-1 mt-5 sm:mt-0' style={{backgroundColor:colors.secondary}}>
-                <div className='h-fit  rounded-lg '>
-                    <button className='p-2 rounded-lg w-full text-xl font-bold bg-blue-500 hover:bg-green-500 text-white' >APPLY</button>
-                </div>
-                <div className='h-fit p-1 mt-2 rounded-lg w-full mx-auto py-2' style={{backgroundColor:colors.secondary2,color: colors.font}}>
-                    <div className='flex px-2 py-1 w-full item-center ml-10'>
-                       <CheckCircleIcon w={7} h={7} color="blue.500"/>
-                       <div className='flex-col ml-5' style={{color: colors.font}}>
-                          <p className='text-xl font-bold'>Registered</p>
-                          <p>20000</p>
-                       </div>
-                    </div>
-
-                    <div className='flex px-2 py-1 w-full item-center ml-10'>
-                       <ViewIcon w={8} h={8} color="blue.500"/>
-                       <div className='flex-col ml-5' style={{color: colors.font}}>
-                          <p className='text-xl font-bold'>Impression</p>
-                          <p>20000</p>
-                       </div>
-                    </div>
-
-                    <div className='flex px-2 py-1 w-full item-center ml-10'>
-                       <CalendarIcon w={8} h={8} color="blue.500"/>
-                       <div className='flex-col ml-5' style={{color: colors.font}}>
-                          <p className='text-xl font-bold'>Dedline</p>
-                          <p>20th August 2023</p>
-                       </div>
-                    </div>
-                </div>
-
-                <div className='h-fit p-1 mt-2 rounded-lg w-full mx-auto py-2' style={{backgroundColor:colors.secondary2,color: colors.font}}>
-                    <div className='flex px-2 py-1 w-full item-center ml-10' >
-                    <Icon as={MdLocationPin} w={8} h={8} color='blue.500' />
-                       <div className='flex-col ml-5' style={{color: colors.font}}>
-                          <p className='text-xl font-bold'>Location</p>
-                          <p>Mumbai,Maharashtra</p>
-                       </div>
-                    </div>
-
-                    <div className='flex px-2 py-1 w-full item-center ml-10'>
-                    <Icon as={AiFillClockCircle} w={8} h={8} color='blue.500' />
-                       <div className='flex-col ml-5' style={{color: colors.font}}>
-                          <p className='text-xl font-bold'>Duration</p>
-                          <p>5 Months</p>
-                       </div>
-                    </div>
-
-                    <div className='flex px-2 py-1 w-full item-center ml-10'>
-                    <Icon as={RiMoneyDollarCircleFill} w={8} h={8} color='blue.500' />
-                       <div className='flex-col ml-5' style={{color: colors.font}}>
-                          <p className='text-xl font-bold'>Stipend</p>
-                          <p>70000/Month</p>
-                       </div>
-                    </div>
-                </div>
-
-                <div className='flex-col h-fit p-1 mt-2 rounded-lg w-full mx-auto py-2' style={{backgroundColor:colors.secondary2,color: colors.font}}>
-                    <p className='font-bold text-xl text-center w-full'>Eligibility</p>
-                    <div className='w-[100%] h-0.5 justify-center items-center mt-0.5' style={{backgroundColor:colors.font}}></div>
-                    <div className='flex flex-wrap mt-2 text-lg px-3 py-1' style={{color: colors.font}}>
-                        <p>Engineering</p>
-                        <p className='ml-1 font-extrabold mr-1'>|</p>
-                        <p>MBA Students</p>
-                        <p className='ml-1 font-extrabold mr-1'>|</p>
-                        <p>Undergraduate</p>
-                        <p className='ml-1 font-extrabold mr-1'>|</p>
-                        <p>Postgraduate</p>
-                    </div>
-                </div>
-            </div>
-         </div>
-
-
+             </div>
+             
+          </div>
        </div>
   )
 }
 
-export default Internshipdetails;
+export default Coursedetails;
