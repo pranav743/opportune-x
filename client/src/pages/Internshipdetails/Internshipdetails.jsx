@@ -94,14 +94,14 @@ const Internshipdetails = () => {
     return (
         <div className='mx-auto sm:w-[90%] w-[100%]' style={{ height: 'auto', padding: '15px', backgroundColor: colors.secondary, boxShadow: `2.5px 5px 7.5px ${colors.hover}`, marginTop: '15px', borderRadius: '8px', display: 'flex', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap', minWidth: '95%' }}>
             <div style={{width: '100%', position: 'relative'}}>
-                <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29tcGFueXxlbnwwfHwwfHx8MA%3D%3D" class="img-fluid rounded-top " alt="Not found" style={{ borderRadius: '20px', transform: 'translateX(15px)', width: '97%', maxHeight: '90vh' }} />
+                <img src={data.message.image} class="img-fluid rounded-top " alt="Not found" style={{ borderRadius: '20px', transform: 'translateX(15px)', width: '97%', maxHeight: '90vh' }} />
                 <div style={{position: 'absolute', top: '0', left: '0', background: `linear-gradient(180deg, rgba(0,0,0,0), ${colors.secondary})` ,height: '100%', width: '100%'}}></div>
             </div>
 
             <div className='flex flex-col sm:flex-row w-full mx-auto mt-6 p-1 justify-between flex-wrap'>
                 <div className='h-fit w-[100%] sm:w-[74%] rounded-lg p-1 ' style={{ backgroundColor: colors.secondary2, color: colors.font }}>
                     <div className='w-full px-3 py-2 flex-col'>
-                        <p className='text-3xl' style={{ color: colors.font, fontWeight: 'bold', fontFamily: 'Titillium Web' }}>{data.message && JSON.stringify(data.message.title)}</p>
+                        <p className='text-3xl' style={{ color: colors.font, fontWeight: 'bold', fontFamily: 'Titillium Web' }}>{data.message.title}</p>
                         <div className='flex mt-3 items-center ml-5'><Icon as={BsFillBuildingsFill} w={5} h={5} color='blue.500' /><p className='text-lg ml-2'>{data.message.companyName}</p></div>
                         <div className='flex  items-center ml-5'><LinkIcon w={5} h={4} color="blue.500" /><p className='text-lg ml-2'>{`www.${data.message.companyName}.com`}</p></div>
                     </div>
