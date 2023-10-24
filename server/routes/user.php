@@ -32,6 +32,8 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/courses/category/{category}', ['CourseController','getCoursesByCategory']);
     $r->addRoute('GET', '/courses/search/{search}', ['CourseController','searchCoursesByTitle']);
     $r->addRoute('GET', '/courses/{id}', ['CourseController','getCourseById']);
+    $r->addRoute('POST', '/enroll/course', ['CourseController','applyForCourse']);
+
 
 
 

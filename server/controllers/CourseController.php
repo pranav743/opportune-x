@@ -106,6 +106,72 @@ class CourseController {
             echo json_encode(["success" => false, 'message' => 'An error occurred while fetching the course.']);
         }
     }
+
+    public function applyForCourse($request, $response, $args)
+    {
+        try {
+            
+            $data = json_decode(file_get_contents('php://input'), true);
+            $db = getDatabase();
+            $course_collection = $db->courses;
+            $user_collection = $db->users;
+
+            if (isset($data['user_id']) && isset($data['course_id'])) {
+
+                try {
+                    $existingUser = $user_collection->findOne(['_id' => new MongoDB\BSON\ObjectId($data['user_id'])]);
+                    $existingCourse = $course_collection->findOne(['_id' => new MongoDB\BSON\ObjectId($data['course_id'])]);
+                } catch (Exception $e) {
+                    http_response_code(404);
+                    echo json_encode(["success" => false, 'message' => 'Invalid Course or User', 'error' => $e]);
+                    exit;
+                }
+                if ($existingUser && $existingCourse) {
+                    $studentId = $data['user_id'];
+                    $enrolledStudents = iterator_to_array($existingCourse['enrolledStudents']);
+                    if (!in_array($studentId, $enrolledStudents)) {
+                        $enrolledStudents[] = $studentId;
+                        $course_collection->updateOne(
+                            ['_id' => new MongoDB\BSON\ObjectId($data['course_id'])],
+                            ['$set' => ['enrolledStudents' => $enrolledStudents]]
+                        );
+                    } else {
+                        http_response_code(200);
+                        echo json_encode(["success" => true, 'message' => 'Already Enrolled !']);
+                        exit;
+                    }
+                    if (!isset($existingUser['myCourseEnrollments'])) {
+                        $myCourseEnrollments = [];
+                    } else {
+                        $myCourseEnrollments = iterator_to_array($existingUser['myCourseEnrollments']);
+                    }
+                    $internshipId = $data['course_id'];
+                    if (!in_array($internshipId, $myCourseEnrollments)) {
+                        $myCourseEnrollments[] = $internshipId;
+
+                        $user_collection->updateOne(
+                            ['_id' => new MongoDB\BSON\ObjectId($data['user_id'])],
+                            ['$set' => ['myCourseEnrollments' => $myCourseEnrollments]]
+                        );
+                    }
+                    http_response_code(200);
+                    echo json_encode(["success" => true, 'message' => 'Your Application has been Submitted !']);
+                    exit;
+                } else {
+                    http_response_code(404);
+                    echo json_encode(["success" => false, 'message' => 'Invalid user or Internship']);
+                    exit;
+                }
+            } else {
+                http_response_code(400);
+                echo json_encode(["success" => false, 'message' => 'Invalid Data Provided']);
+                exit;
+            }
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode(["success" => false, 'message' => 'Something went Wrong', 'error' => $e]);
+        }
+    }
     
  
 }
