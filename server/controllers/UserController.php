@@ -199,7 +199,12 @@ class UserController {
     }
 
 
-    public function updateProfile() {
+    public function updateProfile($request, $response, $args) {
+
+        
+        // $requestBody = $request->getBody();
+        // $requestBodyContents = $requestBody->getContents();
+        // print_r($requestBodyContents);
 
         $data = json_decode(file_get_contents('php://input'), true);
     

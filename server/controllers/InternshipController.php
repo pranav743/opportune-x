@@ -71,10 +71,9 @@ class InternshipController
     public function getInternshipsByIds($request, $response, $args)
     {
         $data = json_decode($request->getBody(), true);
-        echo $data;
 
         if (is_array($data) && !empty($data)) {
-            $internshipIds = $data; // Assuming the JSON body contains an array of internship IDs
+            $internshipIds = $data['internship_ids']; // Assuming the JSON body contains an array of internship IDs
             $db = getDatabase();
             $collection = $db->internships;
 

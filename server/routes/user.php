@@ -17,7 +17,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('GET', '/internship/search/{search}', ['InternshipController','searchInternshipsByTitle']);
     $r->addRoute('GET', '/internship/{id}', ['InternshipController','getInternshipById']);
     $r->addRoute('POST', '/apply/internship', ['InternshipController','applyForInternship']);
-    // $r->addRoute('POST', '/internships/view/ids', ['InternshipController','getInternshipsByIds']);
+    $r->addRoute('POST', '/internships/view/ids', ['InternshipController','getInternshipsByIds']);
 
 
 
