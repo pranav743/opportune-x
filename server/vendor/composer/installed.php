@@ -3,7 +3,7 @@
         'name' => '91932/exp-06',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'c0e2c98ea2a0d9dc87148bf15c51f2524a106509',
+        'reference' => 'b5eac53ff63a7e775ad4e350ccdaf8fd57ce1747',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         '91932/exp-06' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'c0e2c98ea2a0d9dc87148bf15c51f2524a106509',
+            'reference' => 'b5eac53ff63a7e775ad4e350ccdaf8fd57ce1747',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
