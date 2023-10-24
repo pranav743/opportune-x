@@ -118,8 +118,6 @@ class UserController {
         }
     }
 
-    
-
     private function generateJWT($userId) {
         $tokenBuilder = (new Builder(new JoseEncoder(), ChainedFormatter::default()));
         $algorithm    = new Sha256();
@@ -198,7 +196,6 @@ class UserController {
         }
     }
 
-
     public function updateProfile($request, $response, $args) {
 
         
@@ -254,8 +251,8 @@ class UserController {
         }
     }
     
-
     public function route2() {
         echo "Echo Route 2";
     }
+    
 }

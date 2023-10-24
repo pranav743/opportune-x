@@ -104,10 +104,10 @@ class InternshipController
         }
     }
 
-
     public function applyForInternship($request, $response, $args)
     {
         try {
+            
             $data = json_decode(file_get_contents('php://input'), true);
             $db = getDatabase();
             $internship_collection = $db->internships;
@@ -123,15 +123,11 @@ class InternshipController
                     echo json_encode(["success" => false, 'message' => 'Invalid Internship or User', 'error' => $e]);
                     exit;
                 }
-
-
                 if ($existingUser && $existingInternship) {
                     $studentId = $data['user_id'];
                     $appliedStudents = iterator_to_array($existingInternship['appliedStudents']);
-
                     if (!in_array($studentId, $appliedStudents)) {
                         $appliedStudents[] = $studentId;
-
                         $internship_collection->updateOne(
                             ['_id' => new MongoDB\BSON\ObjectId($data['internship_id'])],
                             ['$set' => ['appliedStudents' => $appliedStudents]]
@@ -141,15 +137,12 @@ class InternshipController
                         echo json_encode(["success" => true, 'message' => 'Already Applied !']);
                         exit;
                     }
-
                     if (!isset($existingUser['myInternshipApplications'])) {
                         $myInternshipApplications = [];
                     } else {
                         $myInternshipApplications = iterator_to_array($existingUser['myInternshipApplications']);
                     }
-
                     $internshipId = $data['internship_id'];
-
                     if (!in_array($internshipId, $myInternshipApplications)) {
                         $myInternshipApplications[] = $internshipId;
 
@@ -158,7 +151,6 @@ class InternshipController
                             ['$set' => ['myInternshipApplications' => $myInternshipApplications]]
                         );
                     }
-
                     http_response_code(200);
                     echo json_encode(["success" => true, 'message' => 'Your Application has been Submitted !']);
                     exit;
@@ -167,8 +159,6 @@ class InternshipController
                     echo json_encode(["success" => false, 'message' => 'Invalid user or Internship']);
                     exit;
                 }
-
-
             } else {
                 http_response_code(400);
                 echo json_encode(["success" => false, 'message' => 'Invalid Data Provided']);
@@ -176,7 +166,7 @@ class InternshipController
             }
         } catch (Exception $e) {
             http_response_code(500);
-            echo json_encode(["success" => false, 'message' => 'Something went Wrong']);
+            echo json_encode(["success" => false, 'message' => 'Something went Wrong', 'error' => $e]);
         }
     }
 

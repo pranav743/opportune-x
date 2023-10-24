@@ -1,4 +1,6 @@
 <?php
+
+
 // Allow requests from any origin (not recommended for production)
 header("Access-Control-Allow-Origin: *");
 
@@ -11,13 +13,15 @@ header("Access-Control-Allow-Headers: Content-Type, Authorization");
 // Set the maximum age for preflight requests (in seconds)
 header("Access-Control-Max-Age: 3600"); // Cache preflight requests for 1 hour
 
+use Zend\Diactoros\ServerRequestFactory;
+
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     http_response_code(200);
     exit();
 }
-use Zend\Diactoros\ServerRequestFactory;
+
 
 require __DIR__ . '/vendor/autoload.php';
 require 'controllers/UserController.php';
@@ -57,8 +61,9 @@ switch ($routeInfo[0]) {
         
 
         $request = ServerRequestFactory::fromGlobals();
-
         $response = new \Zend\Diactoros\Response();
+
         $controller->$method($request, $response, $vars);
+        
         break;
 }
