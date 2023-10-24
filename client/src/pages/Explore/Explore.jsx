@@ -1,38 +1,10 @@
 import React from 'react';
 import {  useToast } from '@chakra-ui/react';
-  import { useTheme } from '../../Global/ThemeContext';
-  import axios from 'axios';
-  import showToast from "../../Global/Toast";
-  import { url } from '../../Global/URL';
-  import { CalendarIcon,CheckCircleIcon,ViewIcon,InfoIcon,LinkIcon} from '@chakra-ui/icons'
-  import {
-    List,
-    ListItem,
-    ListIcon,
-    OrderedList,
-    UnorderedList,
-  } from '@chakra-ui/react'
-
-  import { Icon } from '@chakra-ui/react'
-  import {VscDebugBreakpointLog } from 'react-icons/vsc'
-  import {MdCheckCircle,MdOutlineAssignmentTurnedIn} from 'react-icons/md'
-  import {AiFillClockCircle,AiOutlineMobile,AiOutlineTrophy} from 'react-icons/ai'
-  import {RiMoneyDollarCircleFill} from 'react-icons/ri'
-  import {BsFillBuildingsFill,BsFillCameraVideoFill} from 'react-icons/bs'
-  import {GrArticle} from 'react-icons/gr'
-  import {IoIosAlarm} from 'react-icons/io'
-  import {HiDownload,HiOutlineNewspaper} from 'react-icons/hi'
-  import {BiVideo} from 'react-icons/bi'
-
-  import ReactStars from 'react-stars'
-  import { color, wrap } from 'framer-motion';
-  import img1 from './Compete.png'
-  import img2 from './Jobs.png'
-  import img3 from './Learn.png'
-  import img4 from './Img4.webp'
-  import Card from '../Internship/Browse/Card';
-  import Cards from '../Courses/Browse/Card';
-  import { useQuery } from '@tanstack/react-query';
+import { useTheme } from '../../Global/ThemeContext';
+import img4 from './Img4.webp'
+import Card from '../Internship/Browse/Card';
+import Cards from '../Courses/Browse/Card';
+import { useQuery } from '@tanstack/react-query';
 
 
 const Explore = () => {

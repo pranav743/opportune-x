@@ -4,13 +4,11 @@ import { useTheme } from '../../Global/ThemeContext';
 import axios from 'axios';
 import showToast from "../../Global/Toast";
 import { url } from '../../Global/URL';
-import { CalendarIcon, CheckCircleIcon, ViewIcon, InfoIcon, LinkIcon } from '@chakra-ui/icons'
+import { CalendarIcon, CheckCircleIcon, ViewIcon,LinkIcon } from '@chakra-ui/icons'
 import {
     List,
     ListItem,
     ListIcon,
-    OrderedList,
-    UnorderedList,
 } from '@chakra-ui/react'
 
 import { Icon } from '@chakra-ui/react'
@@ -159,7 +157,7 @@ const Internshipdetails = () => {
                         {/* Qualifications and Requirements: */}
                         <div className='mb-8'>
                             <p className='font-bold text-xl mb-1'>Qualifications and Requirements:</p>
-                            
+                            <p>{data.message.requirements}</p>
                         </div>
 
                         {/* Perks: */}
@@ -169,22 +167,22 @@ const Internshipdetails = () => {
                             <List spacing={2}>
                                 <ListItem>
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
+                                    Flexible Work Schedule: Enjoy the freedom to adjust your work hours to better fit your personal life and responsibilities.
                                 </ListItem>
 
                                 <ListItem>
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Assumenda, quia temporibus eveniet a libero incidunt suscipit
+                                    Healthcare Benefits: Access to comprehensive health insurance, ensuring your well-being and peace of mind.
                                 </ListItem>
                                 <ListItem>
 
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+                                    Professional Development Opportunities: Continuous learning and growth through training, workshops, and skill-building programs.
                                 </ListItem>
                                 <ListItem>
 
                                     <ListIcon as={VscDebugBreakpointLog} color='green.500' />
-                                    Quidem, ipsam illum quis sed voluptatum quae eum fugit earum
+                                    Generous Vacation Days: Take time off to recharge and spend quality time with family and friends.
                                 </ListItem>
                             </List>
                         </div>
@@ -221,7 +219,7 @@ const Internshipdetails = () => {
                         <div className='flex px-2 py-1 w-full item-center md:ml-10 ml-0'>
                             <CalendarIcon w={8} h={8} color="blue.500" />
                             <div className='flex-col ml-5' style={{ color: colors.font }}>
-                                <p className='text-xl font-bold'>Dedline</p>
+                                <p className='text-xl font-bold'>Deadline</p>
                                 <p>{data.message.applicationDeadline}</p>
                             </div>
                         </div>
