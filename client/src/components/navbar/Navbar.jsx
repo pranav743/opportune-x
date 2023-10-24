@@ -6,6 +6,7 @@ import { FaHome, FaRocket, FaSignOutAlt, FaThLarge, FaTimes, FaSun, FaStream } f
 import { setAuthToken, isAuthenticated, getUserDetails } from '../../Global/authUtils';
 import { useTheme } from '../../Global/ThemeContext';
 import LoginModal from '../../pages/Login/LoginModal';
+import { useNavigate } from 'react-router-dom';
 
 
 const Navbar = () => {
@@ -14,6 +15,7 @@ const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false) ;
   const { theme: colors, toggleTheme } = useTheme();
   const [smallNav, setSmallNav] = useState(window.innerWidth < 900);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -102,7 +104,7 @@ const Navbar = () => {
       <div style={{height: '60px'}}>
 
         <div className={styles.titleContainer}>
-          <p>Opportune X</p>
+          <p onClick={()=> navigate('/')}>Opportune X</p>
         </div>
 
         { !isLoggedIn && 
