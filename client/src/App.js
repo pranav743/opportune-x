@@ -18,6 +18,7 @@ import Myinternship from './pages/MyInternship/Myinternship';
 import Courses from './pages/Courses/Browse/Courses';
 import Mycourses from './pages/Mycourses/Mycourses';
 import Coursedetails from './pages/Coursedetails/Coursedetails'
+import Settings from './pages/Settings/Settings';
 
 //importing Functions 
 import { setAuthToken, isAuthenticated, getUserDetails } from './Global/authUtils';
@@ -87,6 +88,8 @@ function App() {
             <Route path='/Mycourses' element={<Mycourses/>}/>
             <Route path='/courses/view/:id' element={<Coursedetails/>}/>
             <Route path='/my-internships' element={<Myinternship/>}/>
+            <Route path='/my-profile-settings' element={<Settings/>}/>
+
           </Routes>
           </Wrapper>
         </div>

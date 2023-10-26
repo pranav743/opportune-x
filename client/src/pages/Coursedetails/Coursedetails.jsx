@@ -68,7 +68,7 @@ const Coursedetails = () => {
                         <div className='rounded-md flex-col p-5' style={{ backgroundColor: colors.secondary2, color: colors.font }}>
                             <p className='text-center font-extrabold text-3xl p-2 mb-2'>What You Will Learn</p>
                             <div className='flex justify-around font-bold'>
-                                <List spacing={3} className='whitespace-nowrap'>
+                                <List spacing={3} className=''>
                                     <ListItem>
                                         <ListIcon as={MdCheckCircle} color='green.500' />
                                         Build GUIs and Desktop applications with Python
@@ -87,7 +87,7 @@ const Coursedetails = () => {
                                     </ListItem>
                                 </List>
 
-                                <List spacing={3} className='whitespace-nowrap'>
+                                <List spacing={3} className=''>
                                     <ListItem>
                                         <ListIcon as={MdCheckCircle} color='green.500' />
                                         You will master the Python programming by building 100 unique projects over 100 days.
