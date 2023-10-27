@@ -57,9 +57,9 @@ const Coursedetails = () => {
                 <div className='flex-col w-[70%]'>
                     <div className='w-[100%] h-fit p-8 rounded-md leading-8 mt-3 ' style={{ backgroundColor: colors.secondary, color: colors.font }}>
                         <div className='font-extrabold text-5xl'>{data.message.courseTitle}</div>
-                        <div className='font-bold'>Learn Everything you need to know about Microsoft Project.Beginner to Expert</div>
-                        <div className='flex items-center'><div className='font-semibold text-md mr-5'>Highest Rated</div><ReactStars count={5} value={data.message.rating} half={true} size={20} edit={false} /><div className='font-semibold text-md ml-5'>(5,928 Students)</div></div>
-                        <div className='font-semibold text-md mr-5'>Created by TIA Education,Andrew Ramdaya!</div>
+                        <div className='font-bold'>{data.message.description}</div>
+                        <div className='flex items-center'><div className='font-semibold text-md mr-5'>Highest Rated</div><ReactStars count={5} value={data.message.rating} half={true} size={20} edit={false} /><div className='font-semibold text-md ml-5'>({(data.message.maxStudents)*10})</div></div>
+                        <div className='font-semibold text-md mr-5'>Created by TIA Education,{data.message.instructor}</div>
                         <div className='font-semibold text-md mr-5'><span>Last updated :10/2023</span><span className='ml-5'>English</span><span className='ml-5'>English [Auto]</span></div>
                     </div>
 
@@ -68,7 +68,7 @@ const Coursedetails = () => {
                         <div className='rounded-md flex-col p-5' style={{ backgroundColor: colors.secondary2, color: colors.font }}>
                             <p className='text-center font-extrabold text-3xl p-2 mb-2'>What You Will Learn</p>
                             <div className='flex justify-around font-bold'>
-                                <List spacing={3} className='whitespace-nowrap'>
+                                <List spacing={3} className=''>
                                     <ListItem>
                                         <ListIcon as={MdCheckCircle} color='green.500' />
                                         Build GUIs and Desktop applications with Python
@@ -87,7 +87,7 @@ const Coursedetails = () => {
                                     </ListItem>
                                 </List>
 
-                                <List spacing={3} className='whitespace-nowrap'>
+                                <List spacing={3} className='0'>
                                     <ListItem>
                                         <ListIcon as={MdCheckCircle} color='green.500' />
                                         You will master the Python programming by building 100 unique projects over 100 days.
@@ -110,7 +110,7 @@ const Coursedetails = () => {
                         </div>
 
                         <div className='rounded-lg flex-col mt-5 p-5' style={{ backgroundColor: colors.secondary2, color: colors.font }}>
-                            <p className='text-center font-extrabold text-3xl p-2 ' style={{ color: colors.font2 }}>What you will learn</p>
+                            <p className='text-center font-extrabold text-3xl p-2 ' style={{ color: colors.font2 }}>Perks</p>
                             <div className='flex justify-around text-xl font-bold' >
                                 <List spacing={3}>
                                     <ListItem>
@@ -159,12 +159,14 @@ const Coursedetails = () => {
 
 
                         <div className='rounded-md flex-col mt-5 p-3' style={{ backgroundColor: colors.secondary2, color: colors.font }}>
-                            <p className=' p-2 text-center font-bold text-3xl'>What you will learn</p>
-                            <div className='flex-col justify-around p-2' >
-                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEK 1 : Introduction to Microsoft</div>
-                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEk 2 : Introduction to Microsoft</div>
-                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEk 3 : Introduction to Microsoft</div>
-                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEK 4 : Introduction to Microsoft</div>
+                            <p className=' p-2 text-center font-bold text-3xl'>Course Details</p>
+                            <div className='flex-col justify-around p-2 ' >
+                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEK 1 : {data.message.syllabus[0]}</div>
+                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEk 2 : {data.message.syllabus[1]}</div>
+                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}>  WEEk 3 : {data.message.syllabus[2]}</div>
+                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEK 4 : {data.message.syllabus[3]}</div>
+                                <div className='px-2 py-3 font-bold text-center text-2xl rounded-lg  my-2' style={{ backgroundColor: colors.secondary, color: colors.font }}> WEEK 5 : {data.message.syllabus[4]}</div>
+
                             </div>
                         </div>
 
@@ -197,14 +199,14 @@ const Coursedetails = () => {
                 </div>
 
                 <div className='w-[30%]'>
-                    <div className='h-max p-3 z-0 w-fit fixed flex flex-col items-end'>
-                        <div className='w-fit h-fit rounded-lg p-2'>
-                            <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=1000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8Y29tcGFueXxlbnwwfHwwfHx8MA%3D%3D" className='w-[100%] rounded-lg h-[347px]' />
+                    <div className='h-max p-3 z-0 w-fit fixed flex flex-col items-end '>
+                        <div className='w-fit h-fit rounded-lg p-2 justify-center items-center'>
+                            <img src={data.message.image} className='w-[100%] rounded-lg h-[250px] mr-9' />
                         </div>
 
                         <div className='w-[100%] h-fit rounded-lg mt-1 ' style={{ backgroundColor: colors.secondary, color: colors.font }}>
                             <div className='text-xl p-2 font-bold flex-col justify-center items-center'>
-                                <span className='mr-5 text-4xl ml-8'>$13.66</span><s>$29.54</s><span className='text-green-400 ml-5'>86% off</span>
+                                <span className='mr-5 text-4xl ml-8'>$13.66</span><s>${data.message.fee}</s><span className='text-green-400 ml-5'>86% off</span>
                                 <div className='flex ml-6 mt-1 px-2 text-red-600 text-lg items-center font-thin'><Icon as={IoIosAlarm} w={5} h={5} color='red.400' /><span className='font-bold mx-2'>2 days</span> at this price!!</div>
                                 <div className='bg-green-400 w-[80%] ml-8 p-3 text-center rounded-lg text-white mt-4 hover:cursor-pointer hover:bg-green-700'>BUY</div>
                                 <div className='text-base mt-4  w-full text-center'>30-Day Money-Back Guarantee</div>
