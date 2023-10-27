@@ -87,7 +87,7 @@ const Coursedetails = () => {
                                     </ListItem>
                                 </List>
 
-                                <List spacing={3} className='0'>
+                                <List spacing={3} className=''>
                                     <ListItem>
                                         <ListIcon as={MdCheckCircle} color='green.500' />
                                         You will master the Python programming by building 100 unique projects over 100 days.

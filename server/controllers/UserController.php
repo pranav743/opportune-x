@@ -57,6 +57,7 @@ class UserController {
                 // Prepare the user document
                 $data['password']=$password;
                 $data['isActive']= true;
+                $data['resume']= "";
                 $userDocument = $data;
                 // $userDocument = [
                 //     'email' => $email,

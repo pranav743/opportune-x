@@ -48,6 +48,11 @@ const SideBar = () => {
             name: "Application",
             link: "/my-internships"
         },
+        {
+            icon: <FaRocket/>,
+            name: "Profile",
+            link: '/my-profile-settings'
+        }
        
         
     ]
