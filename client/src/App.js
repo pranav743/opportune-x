@@ -19,7 +19,6 @@ import Courses from './pages/Courses/Browse/Courses';
 import Mycourses from './pages/Mycourses/Mycourses';
 import Coursedetails from './pages/Coursedetails/Coursedetails'
 import Settings from './pages/Settings/Settings'
-import Settings from './pages/Settings/Settings';
 
 //importing Functions 
 import { setAuthToken, isAuthenticated, getUserDetails } from './Global/authUtils';
