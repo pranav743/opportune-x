@@ -42,7 +42,7 @@ const Explore = () => {
 
                 {
                         data && data.slice(0, 6).map((internship, index) => (
-                            <Card title={internship.title} description={internship.description} _id={internship._id} key={index} />
+                            <Card title={internship.title} description={internship.description} _id={internship._id} key={index} image={internship.image}/>
                         ))
 }
                 </div>
