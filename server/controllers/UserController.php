@@ -161,6 +161,21 @@ class UserController {
             $userId = $userIdClaim['$oid'];
         }
 
+        $expirationTime = $token->claims()->get('exp');
+
+        // if ($expirationTime instanceof \DateTimeImmutable) {
+        //     $currentTimestamp = time();
+        //     $expirationTimestamp = $expirationTime->getTimestamp();
+
+        //     if ($expirationTimestamp < $currentTimestamp) {
+        //         echo 'Token has expired';
+        //     } else {
+        //         echo 'Token is still valid';
+        //     }
+        // } else {
+        //     echo 'Expiration time not found or in an invalid format.';
+        // }
+
         return $userId;
     }
 

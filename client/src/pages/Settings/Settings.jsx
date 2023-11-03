@@ -29,9 +29,12 @@ const Settings = (props) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [contactNo, setContactNo] = useState('');
+  const [currentResume, setCurrentResume] = useState(false);
   const [dob, setDob] = useState('');
   const [password, setPassword] = useState('');
   const [file, setFile] = useState(null);
+
+
 
 
   const initialSetup = async () => {
@@ -47,6 +50,7 @@ const Settings = (props) => {
           setContactNo(userDetails.contact_no);
           setEmail(userDetails.email);
           setId(userDetails._id);
+          setCurrentResume(userDetails.resume);
           buttonRef.current.disabled = false;
 
         } catch (error) {
@@ -67,6 +71,18 @@ const Settings = (props) => {
     }
   }
 
+
+  const openResume = () => {
+    // Check if currentResume is not false and it's a valid URL
+    if (currentResume) {
+      console.log(currentResume);
+      let resume = currentResume.replace(/"/g, '');
+      window.open(resume, '_blank'); // Open the resume in a new tab
+    } else {
+      console.log('Resume not available');
+      // You can provide a message or handle the situation as needed
+    }
+  };
 
   const baseStyle = {
     flex: 1,
@@ -270,6 +286,10 @@ const Settings = (props) => {
                   <span style={{ borderRadius: '10px', display: 'block', width: '100%', minHeight: '10px', backgroundColor: colors.primary }}></span>
                 }
               </div>
+              
+              <div><p style={{color: colors.primary, paddingLeft: '20px'}}
+              onClick={openResume}
+              >View Resume</p></div>
 
               <div className={styles.field}>
                 <section className="container">
@@ -277,7 +297,7 @@ const Settings = (props) => {
                     <input {...getInputProps()} />
                     {isDragAccept && (<p style={{ color: 'green' }}>Drop to Add File</p>)}
                     {isDragReject && (<div><p className='text-red-500'>Only .pdf file accepted</p></div>)}
-                    {!isDragActive && (<p style={{ color: colors.primary }}>Drop some files here ...</p>)}
+                    {!isDragActive && (<p style={{ color: colors.primary }}>Upload Your Resume ...</p>)}
                   </div>
                   <aside>
                     <ul style={{ color: colors.primary, marginTop: 3 }}>{acceptedFileItems}</ul>

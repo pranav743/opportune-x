@@ -7,6 +7,7 @@ import {url} from './URL';
 
     export const logout = () => {
         localStorage.removeItem('authToken');
+        window.location.reload();
     }
 
     // Function to get the authentication token from localStorage
