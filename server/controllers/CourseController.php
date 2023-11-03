@@ -5,7 +5,6 @@
     
     use MongoDB\BSON\Regex;
 
-
 class CourseController {
 
     public function getAllCourses() {

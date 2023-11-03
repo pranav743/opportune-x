@@ -10,8 +10,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('POST', '/login', ['UserController','login']);
     $r->addRoute('POST', '/authorization', ['UserController','authorization']);
     $r->addRoute('POST', '/user/update/profile', ['UserController','updateProfile']);
-
-    
+ 
     // Internship 
     // $r->addRoute('GET', '/internship', ['InternshipController','route1']);
     $r->addRoute('GET', '/internship/search/{search}', ['InternshipController','searchInternshipsByTitle']);
@@ -20,25 +19,11 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('POST', '/internships/view/ids', ['InternshipController','getInternshipsByIds']);
 
 
-
-
-
-
-
-
-
     // Courses
     $r->addRoute('GET', '/courses/all', ['CourseController','getAllCourses']);
     $r->addRoute('GET', '/courses/category/{category}', ['CourseController','getCoursesByCategory']);
     $r->addRoute('GET', '/courses/search/{search}', ['CourseController','searchCoursesByTitle']);
     $r->addRoute('GET', '/courses/{id}', ['CourseController','getCourseById']);
     $r->addRoute('POST', '/enroll/course', ['CourseController','applyForCourse']);
-
-
-
-
-
-
-
 
 });
