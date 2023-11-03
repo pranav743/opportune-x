@@ -53,8 +53,8 @@ const Coursedetails = () => {
 
     return (
         <div className='mx-auto sm:w-[100%] w-[100%]' style={{ height: 'fit', padding: '15px', backgroundColor: colors.secondary2, boxShadow: `2.5px 5px 7.5px ${colors.hover}`, marginTop: '0', borderRadius: '0px', display: 'flex', flexDirection: 'column', alignItems: 'center', flexWrap: 'wrap' }}>
-            <div className='flex w-[100%]'>
-                <div className='flex-col w-[70%]'>
+            <div className='flex flex-col sm:flex-row  w-[100%]'>
+                <div className='flex-col w-[100%] sm:w-[70%]'>
                     <div className='w-[100%] h-fit p-8 rounded-md leading-8 mt-3 ' style={{ backgroundColor: colors.secondary, color: colors.font }}>
                         <div className='font-extrabold text-5xl'>{data.message.courseTitle}</div>
                         <div className='font-bold'>{data.message.description}</div>
@@ -198,8 +198,8 @@ const Coursedetails = () => {
                     </div>
                 </div>
 
-                <div className='w-[30%]'>
-                    <div className='h-max p-3 z-0 w-fit fixed flex flex-col items-end '>
+                <div className='w-[100%] sm:w-[30%]'>
+                    <div className='h-max p-3 z-0 w-fit sm:fixed flex flex-col items-end '>
                         <div className='w-fit h-fit rounded-lg p-2 justify-center items-center'>
                             <img src={data.message.image} className='w-[100%] rounded-lg h-[250px] mr-9' />
                         </div>
