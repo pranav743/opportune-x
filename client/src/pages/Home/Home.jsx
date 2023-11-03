@@ -19,33 +19,33 @@ const HomePage = () => {
 
     const companycards = [
         {
-            title: "Company 1",
-            img: "imgs/earth.webp",
-            description: "Leading in HealthCare sector. Since 1999."
+            title: "Google",
+            img: "https://upload.wikimedia.org/wikipedia/commons/3/32/Googleplex_HQ_%28cropped%29.jpg",
+            description: "Leading in Search Engine. Since 2005."
         },
         {
-            title: "Company 2",
-            img: "imgs/sky.jpg",
+            title: "Apple",
+            img: "https://media.cnn.com/api/v1/images/stellar/prod/230406003026-01-apple-store-mumbai.jpg?c=original",
             description: "Innovating technology solutions for a better future."
         },
         {
-            title: "Company 3",
-            img: "imgs/earth.webp",
+            title: "Goldman Sachs",
+            img: "https://static.foxbusiness.com/foxbusiness.com/content/uploads/2021/03/Goldman-Sachs-workers.jpg",
             description: "Global financial services provider with a legacy of excellence."
         },
         {
-            title: "Company 4",
-            img: "imgs/sky.jpg",
+            title: "Amazon",
+            img: "https://www.cnet.com/a/img/resize/427872cd8ef47725715d9babacd64310c749c00e/hub/2013/10/24/71ecea6b-3d27-11e3-b83c-14feb5ca9861/am1.png?auto=webp&width=1200",
             description: "Pioneering sustainable energy solutions since 2005."
         },
         {
-            title: "Company 5",
-            img: "imgs/earth.webp",
+            title: "Adobe",
+            img: "https://thumbs.dreamstime.com/b/bucharest-romania-adobe-inc-offices-logo-american-multinational-computer-software-company-building-212028349.jpg",
             description: "Transforming retail experiences through cutting-edge strategies."
         },
         {
-            title: "Company 6",
-            img: "imgs/sky.jpg",
+            title: "Microsoft",
+            img: "https://image.architonic.com/prj2-3/5104765/microsoft-deutschland-zentrale-projects-01-titel-arcit18.jpg",
             description: "Empowering minds through innovative educational platforms."
         }
     ];
