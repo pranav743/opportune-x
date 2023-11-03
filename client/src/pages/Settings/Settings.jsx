@@ -1,18 +1,16 @@
 import React, { useState, useMemo, useRef, useEffect } from 'react'
 import styles from "./Settings.module.css"
-import { Input, Button, Text, InputGroup, InputRightElement, useToast } from '@chakra-ui/react'
-import { colors } from '../../Global/colors'
+import { Input, Button, Text, useToast } from '@chakra-ui/react'
 import { useTheme } from "../../Global/ThemeContext"
 import showToast from "../../Global/Toast"
-import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { url } from '../../Global/URL'
-import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-import { progress } from 'framer-motion'
-import { Cloudinary } from "@cloudinary/url-gen";
-import { isAuthenticated, getUserDetails } from '../../Global/authUtils'
+import { isAuthenticated, getUserDetails } from '../../Global/authUtils';
+import Loader from '../../components/loader/Loader';
+// import ProgressBar from 'axios-progress-bar';
 
+// ProgressBar.axios(axios);
 
 
 
@@ -24,6 +22,8 @@ const Settings = (props) => {
   const handleClick = () => setShow(!show)
   const toast = useToast();
   const buttonRef = useRef();
+  const [progress, setProgress] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   const [_id, setId] = useState(false);
   const [name, setName] = useState('');
@@ -36,35 +36,35 @@ const Settings = (props) => {
 
   const initialSetup = async () => {
     buttonRef.current.disabled = true;
+    try {
+      if (isAuthenticated()) {
+        var userDetails;
         try {
-            if (isAuthenticated()){
-                var userDetails;
-                try {
-                    userDetails = await getUserDetails();
-                    console.log(userDetails);
-                    setName(userDetails.name);
-                    setDob(userDetails.dob);
-                    setContactNo(userDetails.contact_no);
-                    setEmail(userDetails.email);
-                    setId(userDetails._id);
-                    buttonRef.current.disabled = false;
-                    
-                } catch (error) {
-                    showToast(toast, "Error", 'error', "User not Authenticated");
-                }
-                  
-            }
-            else{
-                showToast(toast, "Error", 'error', "You Should Login to Apply !");
-                buttonRef.current.disabled = false;
-                return;
-            }
+          userDetails = await getUserDetails();
+          console.log(userDetails);
+          setName(userDetails.name);
+          setDob(userDetails.dob);
+          setContactNo(userDetails.contact_no);
+          setEmail(userDetails.email);
+          setId(userDetails._id);
+          buttonRef.current.disabled = false;
+
         } catch (error) {
-            console.log(error)
-            showToast(toast, "Error", 'error', JSON.stringify(error.response));
-            await initialSetup();
-            buttonRef.current.disabled = false;
+          showToast(toast, "Error", 'error', "User not Authenticated");
         }
+
+      }
+      else {
+        showToast(toast, "Error", 'error', "You Should Login to Apply !");
+        buttonRef.current.disabled = false;
+        return;
+      }
+    } catch (error) {
+      console.log(error)
+      showToast(toast, "Error", 'error', JSON.stringify(error.response));
+      await initialSetup();
+      buttonRef.current.disabled = false;
+    }
   }
 
 
@@ -136,10 +136,7 @@ const Settings = (props) => {
 
   const submit = async () => {
 
-
-
     const formData = new FormData();
-    
 
     const cloudinaryURL = "https://api.cloudinary.com/v1_1/dutetj1yh/auto/upload?upload_preset=pfab3xyd";
 
@@ -149,22 +146,32 @@ const Settings = (props) => {
       formData.append('file', acceptedFiles[0]);
       var response = false;
       try {
+        // response = await axios.post(cloudinaryURL, formData, 
+        //   {
+        //   onUploadProgress: (progressEvent) => {
+        //     const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        //     setProgress(percentCompleted);
+        //   },
+        // }
+        // );
+        // response = await axios.post(cloudinaryURL, formData);
         response = await fetch(cloudinaryURL, {
           method: 'POST',
           body: formData,
         });
+
       } catch (error) {
         console.log(error);
       }
-      
+
 
       if (response.ok) {
         const result = await response.json();
         const imageUrl = result.secure_url;
-        console.log(imageUrl);
+        console.log("162: ", imageUrl);
         return JSON.stringify(imageUrl);
       } else {
-        console.error('Upload failed:', response.status);
+        console.error('Upload failed:', response);
         return false;
       }
     } catch (error) {
@@ -174,49 +181,48 @@ const Settings = (props) => {
   }
 
   const handleSubmit = async () => {
-
+    setSaving(true);
     setFile(acceptedFiles[0]);
-    // console.log(file, name, password, dob)
 
-    // if (!file) {
-    //   console.log("NO FILE SELECTED");
-    //   return;
-    // } else {
-      const fileURL = await submit();
-      console.log("JSX 186: ",fileURL);
+    const fileURL = await submit();
+    console.log("INSIDE Handlesubmit =  ", fileURL);
 
-      if (fileURL) {
-        console.log(fileURL);
-        try {
-          let data;
-          if (!file){
-            data = { _id: _id.$oid, name, email, contact_no: contactNo, dob, resume: fileURL };
-          } else {
-            data = { _id: _id.$oid, name, email, contact_no: contactNo, dob}
-          }
-
-          console.log("Data = ", data);
-          const response = axios.post(url + '/user/update/profile', data);
-
-          if (response.data.success) {
-            showToast(toast, "Success", 'success', response.data.message);
-          } else {
-            showToast(toast, "Error", 'error', response.data.message);
-          }
-        } catch (error) {
-          console.log(error)
-          // showToast(toast, "Error", 'error', error.response.data.message);
+    if (fileURL || !fileURL) {
+      console.log(fileURL);
+      try {
+        let data;
+        if (!file) {
+          data = { _id: _id.$oid, name, email, contact_no: contactNo, dob, resume: fileURL };
+        } else {
+          data = { _id: _id.$oid, name, email, contact_no: contactNo, dob }
         }
+        console.log(data);
+
+        console.log("Data = ", data);
+        const response = await axios.post(url + '/user/update/profile', data);
+        console.log(response)
+        if (response.data.success) {
+          showToast(toast, "Success", 'success', response.data.message);
+        } else {
+          showToast(toast, "Error", 'error', response.data.message);
+        }
+      } catch (error) {
+        console.log(error)
+        // showToast(toast, "Error", 'error', error.response.data.message);
       }
-    // }
+    } else {
+      console.log("NO FILE URL")
+    }
+    setSaving(false);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     initialSetup();
-  },[]);
+  }, []);
 
   return (
     <>
+
       <div style={{ width: '100%', minHeight: 'calc(100vh - 90px)', display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
         <div className={styles.container}>
           <p className={styles.signUpHeading}>Edit Profile</p>
@@ -256,27 +262,14 @@ const Settings = (props) => {
                   onChange={(e) => setDob(e.target.value)} />
               </div>
 
-              {/* <div className={styles.field}>
-                <InputGroup size='md'>
-                  <Input variant={'outline'} color={colors.font} border={colors.primary} focusBorderColor={colors.primary} pl={'10px'} isRequired
-                    pr='4.5rem'
-                    type={show ? 'text' : 'password'}
-                    placeholder='Enter password'
-                    _focus={{
-                      rounded: 'md', bg: colors.font, color: colors.secondary
-                    }}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <InputRightElement width='4.5rem'>
-                    <Button h='1.75rem' size='sm' onClick={handleClick} bg={colors.secondary2} color={colors.font}>
-                      {show ? 'Hide' : 'Show'}
-                    </Button>
-                  </InputRightElement>
-                </InputGroup>
-              </div> */}
-
-              {/* Resume Upload */}
+              <div className={styles.field} style={{ flexDirection: 'column' }}>
+                {
+                  (progress === 100) && <p style={{ color: 'yellowgreen' }}>Uploaded</p>
+                }
+                {progress &&
+                  <span style={{ borderRadius: '10px', display: 'block', width: '100%', minHeight: '10px', backgroundColor: colors.primary }}></span>
+                }
+              </div>
 
               <div className={styles.field}>
                 <section className="container">
@@ -306,7 +299,7 @@ const Settings = (props) => {
               }
 
                 onClick={handleSubmit}
-                ref = {buttonRef}
+                ref={buttonRef}
               >SAVE</Button>
             </div>
 
@@ -315,6 +308,10 @@ const Settings = (props) => {
 
       </div>
 
+      { saving ? <Loader />
+      :
+      <p>Saved</p>
+    }
     </>
   )
 }
