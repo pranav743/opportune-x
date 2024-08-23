@@ -49,7 +49,7 @@ const HomePage = () => {
             description: "Empowering minds through innovative educational platforms."
         }
     ];
-    
+
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -60,13 +60,13 @@ const HomePage = () => {
         };
     }, []);
 
-    
+
 
     const getRandomInt = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     };
 
-    
+
 
     return (
         // isLoading ?
@@ -85,80 +85,80 @@ const HomePage = () => {
         //     <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '2000px', backgroundColor: 'purple'}}>
         //         <div className='appear' style={{height: '200px', width: '300px', backgroundColor: colors.font}}></div>
         //     </div>
-        
+
         // </div>
 
-        
+
         <div style={{ height: '100%', width: '100%', minHeight: '100%', maxWidth: '100%', maxHeight: '100%', overflowY: 'hidden' }}>
             <div className={styles.bubbleContainer}>
                 <div className={styles.bubble}>
-                    {[...Array((window.innerWidth > 650) ? 65: 30)].map((_, index) => (
+                    {[...Array((window.innerWidth > 650) ? 65 : 30)].map((_, index) => (
                         <span key={index} className={styles.bubbleSpan} style={{ '--i': getRandomInt(10, 30) }}></span>
                     ))}
                 </div>
             </div>
-            
+
             <div className={`${styles.headingContainer} appear`} ref={elementRef}>
-              <h1 ref={elementRef}>OPPORTUNE</h1>
-              <p>Get The Opportunity you Always Wanted</p>
+                <h1 ref={elementRef}>OPPORTUNE</h1>
+                <p>Get The Opportunity you Always Wanted</p>
             </div>
-            
-            <div className={`${styles.titleContainer}`} style={{background: `linear-gradient(0deg, ${colors.secondary}, rgba(0,0,0,0))`, height: '220px'}}>
+
+            <div className={`${styles.titleContainer}`} style={{ background: `linear-gradient(0deg, ${colors.secondary}, rgba(0,0,0,0))`, height: '220px' }}>
                 <h1>COMPANIES</h1>
             </div>
-            
+
             <div className={`${styles.swiperContainer}`}>
-            {/* { (window.innerWidth > 400) ?
+                {/* { (window.innerWidth > 400) ?
                 
             <>
             <div className={styles.swiperMaskLeft}></div>
             <div className={styles.swiperMaskRight}></div>
             </>
             : null} */}
-                
-            <Swiper style={{maxWidth: '640px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '15px', position: 'relative'}}
+
+                <Swiper style={{ maxWidth: '640px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '15px', position: 'relative' }}
                     effect={'coverflow'}
                     grabCursor={true}
                     centeredSlides={true}
                     slidesPerView={3}
                     coverflowEffect={{
-                    rotate: 0,
-                    stretch: 0,
-                    depth: 100,
-                    modifier: 2.5,
-                      slideShadows: false,
+                        rotate: 0,
+                        stretch: 0,
+                        depth: 100,
+                        modifier: 2.5,
+                        slideShadows: false,
                     }}
                     pagination={true}
                     loop={true}
                     modules={[EffectCoverflow, Pagination, Autoplay]}
                     className={"swiper_container"}
-                    autoplay={{ 
-                        delay: 3000, 
+                    autoplay={{
+                        delay: 3000,
                         disableOnInteraction: false, // Allow user interaction to stop autoplay
-                      }}
+                    }}
                 >
                     <div className={styles.swiperMaskLeft}></div>
-            <div className={styles.swiperMaskRight}></div>
+                    <div className={styles.swiperMaskRight}></div>
 
-                {
-                    companycards.map((company, index)=> (
-                        <SwiperSlide>
-                            <span className={`${styles.card} appear`}>
-                                <h2 style={{color: colors.font, fontSize: '18px', marginTop: '15px', fontWeight: 'bold', letterSpacing: '1px'}}>{company.title}</h2>
-                                <img src={company.img} alt="Not Found" style={{maxHeight: '140px', maxWidth: '190px', borderRadius: '10px', marginTop: "15px"}} />
-                                <p style={{color: colors.font, marginTop: '20px', padding: '10px', textAlign: 'center'}}>{company.description}</p>
-                            </span>
-                        </SwiperSlide>
-                    ))
-                }
+                    {
+                        companycards.map((company, index) => (
+                            <SwiperSlide key={index}>
+                                <span className={`${styles.card} appear`}>
+                                    <h2 style={{ color: colors.font, fontSize: '18px', marginTop: '15px', fontWeight: 'bold', letterSpacing: '1px' }}>{company.title}</h2>
+                                    <img src={company.img} alt={`${company.title} Image`} loading="lazy" style={{ maxHeight: '140px', maxWidth: '190px', borderRadius: '10px', marginTop: "15px" }} />
+                                    <p style={{ color: colors.font, marginTop: '20px', padding: '10px', textAlign: 'center' }}>{company.description}</p>
+                                </span>
+                            </SwiperSlide>
+                        ))
+                    }
 
-          
-              
-            </Swiper>
-                
+
+
+                </Swiper>
+
             </div>
 
-           
+
         </div>
     );
 };
