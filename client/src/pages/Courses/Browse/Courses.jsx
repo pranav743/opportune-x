@@ -73,10 +73,12 @@ const Courses = () => {
             <div className={styles.container}>
 
                 <Helmet>
-                    <title>Opportune-x | Browse Courses</title>
-                    <meta name="description" content="Browse available courses on Opportune-x and enhance your skills." />
+                    <title>Opportune-x | Explore and Browse Top Courses</title>
+                    <meta name="description" content="Browse and find courses on Opportune-x to enhance your skills and knowledge." />
                     <meta name="robots" content="index, follow" />
+                    <link rel="canonical" href="https://opportune-x-frontend.vercel.app/courses/browse/all" />
                 </Helmet>
+
 
                 <h1 style={{ color: colors.font, fontSize: '25px', opacity: '0.9', fontFamily: 'Belanosima', marginBottom: '20px', textAlign: 'center' }}>Courses</h1>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', paddingRight: '4vw', position: 'relative' }}>

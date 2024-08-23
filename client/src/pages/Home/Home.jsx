@@ -93,10 +93,12 @@ const HomePage = () => {
         <div style={{ height: '100%', width: '100%', minHeight: '100%', maxWidth: '100%', maxHeight: '100%', overflowY: 'hidden' }}>
 
             <Helmet>
-                <title>Opportune-x | Home</title>
-                <meta name="description" content="Welcome to Opportune-x, your go-to platform for finding internships and job opportunities." />
+                <title>Opportune-x | Your Platform for Internships & Jobs</title>
+                <meta name="description" content="Welcome to Opportune-x, where you can find the best internships and job opportunities to advance your career." />
                 <meta name="robots" content="index, follow" />
+                <link rel="canonical" href="https://opportune-x-frontend.vercel.app/" />
             </Helmet>
+
 
 
             <div className={styles.bubbleContainer}>
@@ -113,7 +115,7 @@ const HomePage = () => {
             </div>
 
             <div className={`${styles.titleContainer}`} style={{ background: `linear-gradient(0deg, ${colors.secondary}, rgba(0,0,0,0))`, height: '220px' }}>
-                <h1>COMPANIES</h1>
+                <h2>COMPANIES</h2>
             </div>
 
             <div className={`${styles.swiperContainer}`}>

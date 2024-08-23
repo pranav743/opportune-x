@@ -35,10 +35,12 @@ const Internships = () => {
 
             <div className={styles.container}>
                 <Helmet>
-                    <title>Opportune-x | Browse Internships</title>
-                    <meta name="description" content="Browse available internships on Opportune-x and find the right opportunity for you." />
+                    <title>Opportune-x | Explore and Apply for Internships</title>
+                    <meta name="description" content="Explore available internships on Opportune-x and apply for the best opportunities for your career." />
                     <meta name="robots" content="index, follow" />
+                    <link rel="canonical" href="https://opportune-x-frontend.vercel.app/internships/browse" />
                 </Helmet>
+
 
                 <h1 style={{ color: colors.font, fontSize: '25px', opacity: '0.9', fontFamily: 'Belanosima', marginBottom: '20px', textAlign: 'center' }}>Find Internships</h1>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', paddingRight: '4vw' }}>
