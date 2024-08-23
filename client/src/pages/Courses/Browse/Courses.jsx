@@ -9,7 +9,7 @@ import Card from './Card';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../components/loader/Loader';
 import { url } from '../../../Global/URL';
-
+import { Helmet } from 'react-helmet';
 
 
 const Courses = () => {
@@ -71,6 +71,12 @@ const Courses = () => {
         return (
 
             <div className={styles.container}>
+
+                <Helmet>
+                    <title>Opportune-x | Browse Courses</title>
+                    <meta name="description" content="Browse available courses on Opportune-x and enhance your skills." />
+                    <meta name="robots" content="index, follow" />
+                </Helmet>
 
                 <h1 style={{ color: colors.font, fontSize: '25px', opacity: '0.9', fontFamily: 'Belanosima', marginBottom: '20px', textAlign: 'center' }}>Courses</h1>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', paddingRight: '4vw', position: 'relative' }}>

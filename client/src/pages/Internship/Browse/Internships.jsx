@@ -8,7 +8,7 @@ import { SearchIcon } from '@chakra-ui/icons';
 import Card from './Card';
 import { useQuery } from '@tanstack/react-query';
 import Loader from '../../../components/loader/Loader';
-
+import { Helmet } from 'react-helmet';
 
 
 const Internships = () => {
@@ -19,21 +19,26 @@ const Internships = () => {
 
     if (isError) {
         return (
-          <div style={{width: '100%', height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <h1 style={{ color: colors.font, fontSize: '22px', fontWeight: 'bold', letterSpacing: '1px' }}>Something went Wrong :(</h1>
-          </div>
+            <div style={{ width: '100%', height: '80vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <h1 style={{ color: colors.font, fontSize: '22px', fontWeight: 'bold', letterSpacing: '1px' }}>Something went Wrong :(</h1>
+            </div>
         );
-      } else if (isLoading) {
+    } else if (isLoading) {
         return (
-          <div style={{ height: '80vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
-            <Loader/>
-          </div>
+            <div style={{ height: '80vh', display: 'flex', flexWrap: 'wrap', justifyContent: 'center', width: '100%' }}>
+                <Loader />
+            </div>
         );
-      }
+    }
     else {
         return (
 
             <div className={styles.container}>
+                <Helmet>
+                    <title>Opportune-x | Browse Internships</title>
+                    <meta name="description" content="Browse available internships on Opportune-x and find the right opportunity for you." />
+                    <meta name="robots" content="index, follow" />
+                </Helmet>
 
                 <h1 style={{ color: colors.font, fontSize: '25px', opacity: '0.9', fontFamily: 'Belanosima', marginBottom: '20px', textAlign: 'center' }}>Find Internships</h1>
                 <div style={{ width: '100%', display: 'flex', justifyContent: 'flex-end', paddingRight: '4vw' }}>

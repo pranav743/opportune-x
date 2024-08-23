@@ -4,6 +4,7 @@ import { useTheme } from '../../Global/ThemeContext';
 import styles from './Home.module.css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination, EffectCoverflow } from 'swiper/modules';
+import { Helmet } from 'react-helmet';
 
 import 'swiper/css';
 import 'swiper/css/effect-coverflow';
@@ -90,6 +91,14 @@ const HomePage = () => {
 
 
         <div style={{ height: '100%', width: '100%', minHeight: '100%', maxWidth: '100%', maxHeight: '100%', overflowY: 'hidden' }}>
+
+            <Helmet>
+                <title>Opportune-x | Home</title>
+                <meta name="description" content="Welcome to Opportune-x, your go-to platform for finding internships and job opportunities." />
+                <meta name="robots" content="index, follow" />
+            </Helmet>
+
+
             <div className={styles.bubbleContainer}>
                 <div className={styles.bubble}>
                     {[...Array((window.innerWidth > 650) ? 65 : 30)].map((_, index) => (
