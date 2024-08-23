@@ -38,7 +38,7 @@ const Internships = () => {
                     <title>Opportune-x | Explore and Apply for Internships</title>
                     <meta name="description" content="Explore available internships on Opportune-x and apply for the best opportunities for your career." />
                     <meta name="robots" content="index, follow" />
-                    <link rel="canonical" href="https://opportune-x-frontend.vercel.app/internships/browse" />
+                    <link rel="canonical" href="https://opportune-x-frontend.vercel.app/internships/browse" hreflang="en"/>
                 </Helmet>
 
 

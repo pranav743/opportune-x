@@ -76,7 +76,7 @@ const Courses = () => {
                     <title>Opportune-x | Explore and Browse Top Courses</title>
                     <meta name="description" content="Browse and find courses on Opportune-x to enhance your skills and knowledge." />
                     <meta name="robots" content="index, follow" />
-                    <link rel="canonical" href="https://opportune-x-frontend.vercel.app/courses/browse/all" />
+                    <link rel="canonical" href="https://opportune-x-frontend.vercel.app/courses/browse/all" hreflang="en"/>
                 </Helmet>
 
 

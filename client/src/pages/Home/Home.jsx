@@ -94,9 +94,9 @@ const HomePage = () => {
 
             <Helmet>
                 <title>Opportune-x | Your Platform for Internships & Jobs</title>
-                <meta name="description" content="Welcome to Opportune-x, where you can find the best internships and job opportunities to advance your career." />
+                <meta name="description" content="Welcome to Opportune-x, where you can find the best internships and job opportunities aligned with your goals to advance your career." />
                 <meta name="robots" content="index, follow" />
-                <link rel="canonical" href="https://opportune-x-frontend.vercel.app/" />
+                <link rel="canonical" href="https://opportune-x-frontend.vercel.app/" hreflang="en" />
             </Helmet>
 
 
@@ -155,7 +155,7 @@ const HomePage = () => {
                         companycards.map((company, index) => (
                             <SwiperSlide key={index}>
                                 <span className={`${styles.card} appear`}>
-                                    <h2 style={{ color: colors.font, fontSize: '18px', marginTop: '15px', fontWeight: 'bold', letterSpacing: '1px' }}>{company.title}</h2>
+                                    <h3 style={{ color: colors.font, fontSize: '18px', marginTop: '15px', fontWeight: 'bold', letterSpacing: '1px' }}>{company.title}</h3>
                                     <img src={company.img} alt={`${company.title} Image`} loading="lazy" style={{ maxHeight: '140px', maxWidth: '190px', borderRadius: '10px', marginTop: "15px" }} />
                                     <p style={{ color: colors.font, marginTop: '20px', padding: '10px', textAlign: 'center' }}>{company.description}</p>
                                 </span>
