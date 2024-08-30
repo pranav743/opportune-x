@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+		<!--	created with www.mysitemapgenerator.com	-->
+		<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/internships/browse</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/courses/browse/all</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/explore</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.9</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/my-internships</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.5</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/my-profile-settings</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.3</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/courses/view/</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.8</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/signup</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>1.0</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/Myinternship</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+<url>
+	<loc>https://opportune-x-frontend.vercel.app/Mycourses</loc>
+	<lastmod>2024-08-30T09:07:53+01:00</lastmod>
+	<priority>0.4</priority>
+</url>
+</urlset>
